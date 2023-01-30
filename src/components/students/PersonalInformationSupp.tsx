@@ -1,12 +1,17 @@
 import { Link } from "react-router-dom";
 
 const PersonalInformationSupp = ({ student, id }: any) => {
-  console.log(student);
-
   return (
     <>
       {!student.studentinfos && (
-        <p className='alert alert-danger'>Pas d'infrmations suplementaire </p>
+        <>
+          <p className='alert alert-danger'>Pas d'infrmations suplementaire </p>
+          <Link to={`/dashbord/add-students-infos/${id}`}>
+            <button className='btn btn-primary bold'>
+              <i className='fa fa-plus'></i> Ajouter les informations
+            </button>
+          </Link>
+        </>
       )}
       <table className='table mb-2'>
         {student.studentinfos && (

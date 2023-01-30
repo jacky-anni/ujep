@@ -8,7 +8,7 @@ import {
   showStudents,
   addStudentsSupp,
 } from "../../redux/actions/StudentAction";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import BannerStudents from "./BannerStudents";
 import { studentFetch } from "../../redux/StudentsSlice";
 import { useAppDispatch, useAppSelector } from "./../../redux/hooks/hooks";
@@ -32,9 +32,11 @@ const AddStudentsInfoSupp: React.FC<{}> = () => {
     ocupation: Yup.string().required("Ce champ est obligatoire !"),
     personne_resp: Yup.string().required("Ce champ est obligatoire !"),
     telephone_resp: Yup.string().required("Ce champ est obligatoire !"),
-    maladie_check: Yup.string().required("Ce champ est obligatoire !"),
     personne_contact: Yup.string().required("Ce champ est obligatoire !"),
-    annee_fin_etude: Yup.string().required("Ce champ est obligatoire !"),
+    annee_fin_etude: Yup.string()
+      .required("Ce champ est obligatoire !")
+      .matches(/^\d{4}$/, "Le numéro doit être composé de 4 chiffres"),
+    maladie_check: Yup.string().required("Ce champ est obligatoire !"),
     etablissement_check: Yup.string().required("Ce champ est obligatoire !"),
   });
 
@@ -87,6 +89,7 @@ const AddStudentsInfoSupp: React.FC<{}> = () => {
           },
           currentStudent.student.id
         );
+
         // if errors
         if (data.status === 404) {
           // return the error message
@@ -133,7 +136,7 @@ const AddStudentsInfoSupp: React.FC<{}> = () => {
               <Field
                 className='form-control '
                 name='ocupation'
-                placeholder='Medecein'
+                placeholder='Medecin'
               />
 
               <span className='errors-field'>
@@ -190,7 +193,7 @@ const AddStudentsInfoSupp: React.FC<{}> = () => {
                 <Field
                   className='form-control '
                   name='annee_fin_etude'
-                  placeholder='2010-2011'
+                  placeholder='2010'
                 />
                 <span className='errors-field'>
                   {errors.annee_fin_etude ? (
@@ -225,9 +228,10 @@ const AddStudentsInfoSupp: React.FC<{}> = () => {
                   </label>
                 </div>
                 <span className='errors-field'>
-                  {errors.maladie ? <>{errors.maladie}</> : null}
+                  {errors.maladie_check ? <>{errors.maladie_check}</> : null}
                 </span>
               </div>
+
               {values.maladie_check === "Oui" && (
                 <div className='row'>
                   <div className='col-md-12 position-relative mb-2'>
@@ -272,7 +276,9 @@ const AddStudentsInfoSupp: React.FC<{}> = () => {
                   </label>
                 </div>
                 <span className='errors-field'>
-                  {errors.maladie ? <>{errors.maladie}</> : null}
+                  {errors.etablissement_check ? (
+                    <>{errors.etablissement_check}</>
+                  ) : null}
                 </span>
               </div>
             </div>
@@ -305,7 +311,7 @@ const AddStudentsInfoSupp: React.FC<{}> = () => {
                     <Field
                       className='form-control '
                       name='option_precendente'
-                      placeholder='2010-2011'
+                      placeholder='Mentionnez ici....'
                     />
                   </div>
 
@@ -314,7 +320,7 @@ const AddStudentsInfoSupp: React.FC<{}> = () => {
                     <Field
                       className='form-control '
                       name='annee_etude_precedente'
-                      placeholder='Mentionnez ici..'
+                      placeholder='Mentionnez ici....'
                     />
                   </div>
                 </div>
@@ -322,7 +328,16 @@ const AddStudentsInfoSupp: React.FC<{}> = () => {
             )}
           </div>
 
-          <SubmitButtom message={"Soumettre"} loading={loading} />
+          <>
+            <SubmitButtom message={"Soumettre"} loading={loading} />
+            &nbsp;&nbsp;
+            <Link to={`/dashbord/profile-students/${student}`}>
+              <button className='btn btn-outline-primary bold'>
+                {" "}
+                Pas maintenant
+              </button>
+            </Link>
+          </>
         </Form>
       )}
     </Formik>

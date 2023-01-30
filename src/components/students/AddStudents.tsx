@@ -12,6 +12,11 @@ const AddStudents: React.FC<{}> = () => {
   const [loading, setLoading] = useState(false);
   const [errorsState, setErrorsState] = useState(null);
   const navigate = useNavigate();
+
+  // set the current date andconst maxDate = new Date();
+  const maxDate = new Date();
+  maxDate.setFullYear(maxDate.getFullYear() - 18);
+
   // shema validation
   const SignupSchema = Yup.object().shape({
     nom: Yup.string().required("Ce champ est obligatoire !"),
@@ -21,7 +26,9 @@ const AddStudents: React.FC<{}> = () => {
       .email("L'email est invalide")
       .required("Ce champ est obligatoire !"),
     telephone: Yup.string().required("Ce champ est obligatoire !"),
-    date_naissance: Yup.date().required("Cette date n'est pas valide!"),
+    date_naissance: Yup.date()
+      .required("Cette date n'est pas valide!")
+      .max(maxDate, "Vous devez avoir au moins 18 ans"),
     lieu_naissance: Yup.string().required("Ce champ est obligatoire !"),
     groupe_sanguin: Yup.string().required("Ce champ est obligatoire !"),
     statut_matrimonial: Yup.string().required("Ce champ est obligatoire !"),

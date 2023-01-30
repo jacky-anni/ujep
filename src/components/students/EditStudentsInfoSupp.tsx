@@ -6,7 +6,7 @@ import SubmitButtom from "../Ui/form/SubmitButtom";
 import { ToastContainer, toast } from "react-toastify";
 import {
   showStudents,
-  addStudentsSupp,
+  editStudentsSupp,
 } from "../../redux/actions/StudentAction";
 import { useNavigate, useParams } from "react-router-dom";
 import BannerStudents from "./BannerStudents";
@@ -26,6 +26,7 @@ const EditStudentsInfoSupp: React.FC<{}> = () => {
   const dispatch = useAppDispatch();
   // fetch studendts
   const currentStudent = useAppSelector((state) => state.student);
+  var initialValues;
 
   // shema validation
   const AddStudentsInfoSupp = Yup.object().shape({
@@ -51,28 +52,52 @@ const EditStudentsInfoSupp: React.FC<{}> = () => {
     })();
   }, [student]);
 
+  if (currentStudent.student) {
+    initialValues = {
+      ocupation: currentStudent.student.studentinfos.ocupation,
+      personne_resp: currentStudent.student.studentinfos.personne_resp,
+      telephone_resp: currentStudent.student.studentinfos.telephone_resp,
+      maladie: currentStudent.student.studentinfos.maladie,
+      personne_contact: currentStudent.student.studentinfos.personne_contact,
+      annee_fin_etude: currentStudent.student.studentinfos.annee_fin_etude,
+      nom_etablissemet: currentStudent.student.studentinfos.nom_etablissemet,
+      etude_precedente: currentStudent.student.studentinfos.etude_precedente,
+      option_precendente:
+        currentStudent.student.studentinfos.option_precendente,
+      annee_etude_precedente:
+        currentStudent.student.studentinfos.annee_etude_precedente,
+      maladie_check: currentStudent.student.studentinfos.maladie
+        ? "Oui"
+        : "Non",
+      etablissement_check: currentStudent.student.studentinfos.nom_etablissemet
+        ? "Oui"
+        : "Non",
+    };
+  } else {
+    initialValues = {
+      ocupation: "",
+      personne_resp: "",
+      telephone_resp: "",
+      maladie: "",
+      personne_contact: "",
+      annee_fin_etude: "",
+      nom_etablissemet: "",
+      etude_precedente: "",
+      option_precendente: "",
+      annee_etude_precedente: "",
+      maladie_check: "",
+      etablissement_check: "",
+    };
+  }
   const form = (
     <Formik
-      initialValues={{
-        ocupation: "",
-        personne_resp: "",
-        telephone_resp: "",
-        maladie: "",
-        personne_contact: "",
-        annee_fin_etude: "",
-        nom_etablissemet: "",
-        etude_precedente: "",
-        option_precendente: "",
-        annee_etude_precedente: "",
-        maladie_check: "",
-        etablissement_check: "",
-      }}
+      initialValues={initialValues}
       validationSchema={AddStudentsInfoSupp}
       onSubmit={async (values, { resetForm }) => {
         //same shape as initial values
         setLoading(true);
         // insert employee
-        const data = await addStudentsSupp(
+        const data = await editStudentsSupp(
           {
             ocupation: values.ocupation,
             personne_resp: values.personne_resp,
@@ -95,15 +120,18 @@ const EditStudentsInfoSupp: React.FC<{}> = () => {
           setLoading(false);
         } else {
           // if success message to user
-          toast.success("informations ajoutées avec succès");
+          toast.success("informations modifiées avec succès");
           // set loading is false
           setLoading(false);
           // reset data form to empty
           resetForm();
           // reset the message errors to null
           setErrorsState(null);
+
           // redirect
-          return navigate("/dashbord/add-students");
+          return navigate(
+            "/dashbord/profile-students/" + currentStudent.student.person.uuid
+          );
         }
       }}
     >
@@ -322,7 +350,7 @@ const EditStudentsInfoSupp: React.FC<{}> = () => {
             )}
           </div>
 
-          <SubmitButtom message={"Soumettre"} loading={loading} />
+          <SubmitButtom message={"Modifier"} loading={loading} />
         </Form>
       )}
     </Formik>

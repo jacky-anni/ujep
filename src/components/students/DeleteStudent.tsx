@@ -76,7 +76,7 @@ const DeleteStudent = ({ id }: IdOptions) => {
       <LunchDeleteModal
         modalName={`students${id}`}
         title={BottomText}
-        text={"Voulez vous vraiment supprimer cet employé ?"}
+        text={"Voulez vous vraiment supprimer cet etudiant ?"}
         deleteButton={boutton}
       />
     </>

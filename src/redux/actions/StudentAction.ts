@@ -1,4 +1,5 @@
 import axios from "axios";
+import { errors } from "./../../components/ultils/errors";
 
 // interface dat
 interface Students {
@@ -48,12 +49,7 @@ export const addStudents = async (data: Students) => {
     const res = await axios.post(`/students`, data);
     return res.data;
   } catch (error: any) {
-    console.log(error);
-
-    return {
-      status: 404,
-      message: error.response.data.message,
-    };
+    errors(error);
   }
 };
 
@@ -76,6 +72,19 @@ export const addStudentsSupp = async (data: StudentsSupp, student: any) => {
 export const editStudents = async (id: string, data: Students) => {
   try {
     const res = await axios.patch(`/Students/${id}`, data);
+    return res.data;
+  } catch (error: any) {
+    return {
+      status: 404,
+      message: error.response.data.message,
+    };
+  }
+};
+
+// edit Students information supp.
+export const editStudentsSupp = async (data: StudentsSupp, id: string) => {
+  try {
+    const res = await axios.patch(`/Student/infos/${id}`, data);
     return res.data;
   } catch (error: any) {
     return {
