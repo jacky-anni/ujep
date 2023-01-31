@@ -81,6 +81,7 @@ const LoginForm = () => {
             <div className='col-md-12 position-relative mb-2'>
               <label>Mot de passe</label>
               <Field
+                type='password'
                 className='form-control '
                 name='password'
                 placeholder='Votre mot de passe'
