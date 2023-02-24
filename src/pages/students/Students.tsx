@@ -1,6 +1,6 @@
 import StudentsList from "../../components/students/StudentsList";
 import AppTitle from "../../components/partials/AppTitle";
-const Students = () => {
+export const Students = () => {
   return (
     <>
       <AppTitle title={"Ajouter etudiant"} />
@@ -8,5 +8,3 @@ const Students = () => {
     </>
   );
 };
-
-export default Students;

@@ -50,6 +50,16 @@ const LeftSideBar = () => {
                   <span> Etudiants </span>
                 </Link>
               </li>
+
+              <li>
+                <Link to='/dashbord/users'>
+                  <i className='fa fa-user' />
+                  <span className='badge bg-info rounded-pill float-end'>
+                    4
+                  </span>
+                  <span> Utilisateurs </span>
+                </Link>
+              </li>
             </ul>
           </div>
           {/* End Sidebar */}

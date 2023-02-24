@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "./../../redux/hooks/hooks";
 import { setCurrentUser } from "../../redux/actions/UserAction";
 import { getCurrentUser, logoutUser } from "../../redux/UserSlice";
 import { ToastContainer } from "react-toastify";
+import { Loader } from "./Loader";
 const Main = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
