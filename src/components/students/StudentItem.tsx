@@ -29,33 +29,13 @@ const StudentItem = ({ students }: any) => {
             </Link>{" "}
             &nbsp;
             <span></span>
-            <button
+            {/* <button
               className='btn btn-danger btn-xs'
               type='button'
               style={{ fontWeight: "bold" }}
             >
               <DeleteStudent id={students.person.uuid} />
-            </button>
-            {/* <div className='dropdown-menu' aria-labelledby='dropdownMenuButton'>
-              <Link
-                to={`/edit-employee/${employees.person.uuid}`}
-                className='action-icon dropdown-item'
-              >
-                <span
-                  style={{
-                    fontSize: "13px",
-                    color: "black",
-                    fontWeight: "bold",
-                  }}
-                >
-                  <i className='fa fa-edit action-buttom' /> Modifier
-                </span>
-              </Link>
-              <div className='dropdown-divider'></div>
-              <span>
-                <DeleteEmployee id={employees.person.uuid} />
-              </span>{" "}
-            </div> */}
+            </button> */}
           </div>
         </td>
       </tr>

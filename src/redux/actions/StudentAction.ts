@@ -1,5 +1,4 @@
 import axios from "axios";
-import { errors } from "./../../components/ultils/errors";
 
 // interface dat
 interface Students {
@@ -49,7 +48,10 @@ export const addStudents = async (data: Students) => {
     const res = await axios.post(`/students`, data);
     return res.data;
   } catch (error: any) {
-    errors(error);
+    return {
+      status: 404,
+      message: error.response.data.message,
+    };
   }
 };
 
@@ -60,7 +62,6 @@ export const addStudentsSupp = async (data: StudentsSupp, student: any) => {
     return res.data;
   } catch (error: any) {
     console.log(error);
-
     return {
       status: 404,
       message: "Erruer de connexion",

@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "./../../redux/hooks/hooks";
 import { setCurrentUser } from "../../redux/actions/UserAction";
 import { getCurrentUser, logoutUser } from "../../redux/UserSlice";
 import { ToastContainer } from "react-toastify";
+import { Loader } from "./Loader";
 const Main = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -58,6 +59,7 @@ const Main = () => {
                     <div className='page-title-box'>
                       {/* {children} */}
                       <Outlet />
+                      <Footer />
                     </div>
                   </div>
                 </div>
@@ -66,7 +68,6 @@ const Main = () => {
               {/* container */}
             </div>
             {/* content */}
-            <Footer />
           </div>
           {/* ============================================================== */}
           {/* End Page content */}

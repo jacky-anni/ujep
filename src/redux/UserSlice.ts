@@ -4,14 +4,20 @@ import axios from "axios";
 interface UserState {
   isLoading: boolean;
   isAuthenticated: boolean;
+  users: any[];
+  meta: any;
   user: null;
+  errors: null;
 }
 
 // Define the initial state using that type
 const initialState: UserState = {
   isLoading: true,
   isAuthenticated: false,
+  users: [],
+  meta: [],
   user: null,
+  errors: null,
 };
 
 export const EmployeeSlice = createSlice({
@@ -45,12 +51,47 @@ export const EmployeeSlice = createSlice({
       state.isAuthenticated = true;
       state.user = action.payload.person;
     },
+
+    getUsers: (state, action) => {
+      state.isLoading = false;
+      state.isAuthenticated = true;
+      state.users = [...action.payload.data];
+      state.meta = action.payload.meta;
+    },
+
+    addUsers: (state, action) => {
+      state.isLoading = false;
+      state.users = [...state.users, action.payload];
+      // state.meta = [...state.meta, action.payload.meta];
+    },
+
+    // edit users
+    editUsers: (state, action) => {
+      state.isLoading = false;
+      state.users = state.users.map((user) =>
+        user.id === action.payload.id ? action.payload : user
+      );
+    },
+
+    deleteUser: (state, action) => {
+      state.isLoading = false;
+      state.users = state.users.filter((user) => user.id !== action.payload.id);
+    },
+
     clearLoading: (state) => {
       state.isLoading = true;
     },
   },
 });
 
-export const { loginUser, logoutUser, clearLoading, getCurrentUser } =
-  EmployeeSlice.actions;
+export const {
+  loginUser,
+  logoutUser,
+  clearLoading,
+  getCurrentUser,
+  getUsers,
+  addUsers,
+  editUsers,
+  deleteUser,
+} = EmployeeSlice.actions;
 export default EmployeeSlice.reducer;

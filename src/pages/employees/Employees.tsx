@@ -1,9 +1,9 @@
 import EmployeeList from "../../components/employee/EmployeeList";
-import AppTitle from "../../components/partials/AppTitle";
+import { AppTitle } from "../../components/partials/AppTitle";
 const Employees = () => {
   return (
     <>
-      <AppTitle title={"Liste des employées"} />
+      <AppTitle title={"Liste des employées"} img={"employees"} />
       <EmployeeList />
     </>
   );

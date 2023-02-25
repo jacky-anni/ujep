@@ -7,12 +7,21 @@ import Employees from "./pages/employees/Employees";
 import Login from "./pages/Login";
 import LoginLayout from "./components/layout/LoginLayout";
 import Home from "./pages/Home";
-import Students from "./pages/students/Students";
+
+import { Loader } from "./components/layout/Loader";
+// students list
+
+// import Students from "./pages/students/Students";
 import AddStudents from "./components/students/AddStudents";
 import AddStudentsInfoSupp from "./components/students/AddStudentsInfoSupp";
 import Profile from "./pages/students/Profile";
 import EditStudents from "./components/students/EditStudents";
 import EditStudentsInfoSupp from "./components/students/EditStudentsInfoSupp";
+
+// users
+import { Faculties, Users } from "./components/ultils/routes";
+// students
+import { Students } from "./components/ultils/routes";
 
 const App: React.FC = () => {
   return (
@@ -28,7 +37,34 @@ const App: React.FC = () => {
             }
           />
           <Route path='/dashbord/employees' element={<Employees />} />
-          <Route path='/dashbord/students' element={<Students />} />
+          {/* <Route path='/dashbord/students' element={<Students />} /> */}
+
+          <Route
+            path='/dashbord/students'
+            element={
+              <Suspense fallback={<Loader />}>
+                <Students />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path='/dashbord/faculty'
+            element={
+              <Suspense fallback={<Loader />}>
+                <Faculties />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path='/dashbord/users'
+            element={
+              <Suspense fallback={<Loader />}>
+                <Users />
+              </Suspense>
+            }
+          />
           <Route
             path='/dashbord/add-students'
             element={

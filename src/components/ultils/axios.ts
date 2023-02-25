@@ -1,5 +1,6 @@
 import axios from "axios";
-axios.defaults.baseURL = "https://backend.ujeph.edu.ht/v1/api";
+//university.ujeph.edu.ht/v1/api
+https: axios.defaults.baseURL = "https://university.ujeph.edu.ht/v1/api";
 axios.defaults.headers.common["Authorization"] =
   "Bearer " + localStorage.getItem("wpwuab") || null;
 

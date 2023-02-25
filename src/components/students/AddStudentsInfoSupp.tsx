@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { Form, Field, Formik } from "formik";
-import AppTitle from "../partials/AppTitle";
+import { AppTitle } from "../partials/AppTitle";
 import SubmitButtom from "../Ui/form/SubmitButtom";
 import { ToastContainer, toast } from "react-toastify";
 import {
@@ -347,7 +347,7 @@ const AddStudentsInfoSupp: React.FC<{}> = () => {
     <>
       <div className='row'>
         <div className='card'>
-          <AppTitle title={"Ajouter un etudiant"} />
+          <AppTitle title={"Ajouter un etudiant"} img='fdfd' />
         </div>
 
         <div className='col-md-4'>
