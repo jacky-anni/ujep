@@ -5,7 +5,7 @@ interface AddProps {
 const AppTitle = ({ title }: AddProps) => {
   return (
     <>
-      <h4 className='page-title'>{title}</h4>
+      <h4 className=' bg-white'>{title}</h4>
     </>
   );
 };

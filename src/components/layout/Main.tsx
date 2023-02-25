@@ -59,6 +59,7 @@ const Main = () => {
                     <div className='page-title-box'>
                       {/* {children} */}
                       <Outlet />
+                      <Footer />
                     </div>
                   </div>
                 </div>
@@ -67,7 +68,6 @@ const Main = () => {
               {/* container */}
             </div>
             {/* content */}
-            <Footer />
           </div>
           {/* ============================================================== */}
           {/* End Page content */}

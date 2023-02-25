@@ -8,6 +8,7 @@ import { login } from "./../../redux/actions/UserAction";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
+import { Alert } from "@mui/material";
 
 const LoginForm = () => {
   // is loding for submitinfo
@@ -59,8 +60,10 @@ const LoginForm = () => {
       {({ errors, touched }) => (
         <Form>
           {errorsState && (
-            <div className='row mb-3 alert alert-danger bold '>
-              <b>{errorsState}</b>
+            <div className='row mb-3 bold '>
+              <Alert variant='filled' severity='error'>
+                {errorsState}
+              </Alert>
             </div>
           )}
 

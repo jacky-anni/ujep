@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import LoadingBar from "react-top-loading-bar";
-import { Skeleton } from "antd";
-import { RotatingLines } from "react-loader-spinner";
+import Box from "@mui/material/Box";
+import Skeleton from "@mui/material/Skeleton";
 
 export const Loader = () => {
   const ref = useRef<any>(null);
@@ -12,18 +12,14 @@ export const Loader = () => {
   return (
     <>
       <LoadingBar color='#f11946' ref={ref} shadow={true} />
-      <Skeleton active />
-      {/* <center>
-        <RotatingLines
-          strokeColor='#7d56c2'
-          strokeWidth='6'
-          animationDuration='0.75'
-          width='65'
-          visible={true}
-        />
-        <Skeleton active />
-        <p>Chajman....</p>
-      </center> */}
+      <div className='bg-white p-3'>
+        <Box>
+          <Skeleton variant='rectangular' height={60} />
+          <Skeleton />
+          <Skeleton animation='wave' />
+          <Skeleton animation={false} />
+        </Box>
+      </div>
     </>
   );
 };
