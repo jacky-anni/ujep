@@ -65,6 +65,14 @@ export const EmployeeSlice = createSlice({
       // state.meta = [...state.meta, action.payload.meta];
     },
 
+    // edit users
+    editUsers: (state, action) => {
+      state.isLoading = false;
+      state.users = state.users.map((user) =>
+        user.id === action.payload.id ? action.payload : user
+      );
+    },
+
     deleteUser: (state, action) => {
       state.isLoading = false;
       state.users = state.users.filter((user) => user.id !== action.payload.id);
@@ -83,6 +91,7 @@ export const {
   getCurrentUser,
   getUsers,
   addUsers,
+  editUsers,
   deleteUser,
 } = EmployeeSlice.actions;
 export default EmployeeSlice.reducer;

@@ -10,6 +10,16 @@ export const addUser = async (data: any) => {
   }
 };
 
+// edit users
+export const editUser_ = async (data: any, id: string) => {
+  try {
+    const res = await axios.patch(`users/${id}`, data);
+    return res.data;
+  } catch (errors: any) {
+    return ErrorManagement(errors);
+  }
+};
+
 export const deleteUser_ = async (id: string) => {
   try {
     const res = await axios.delete(`users/${id}`);

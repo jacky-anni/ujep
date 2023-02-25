@@ -25,13 +25,10 @@ export const UserList = () => {
     })();
   }, [dispatch]);
 
-  const { users }: any = user.users;
-
   return (
     <>
       <div className='col-md-12 p-2'>
         <Header />
-        {user.users.length}
         <div className='table-responsive'>
           <table className='table table-nowrap table-centered m-0'>
             {user.users.length > 0 && (
@@ -48,7 +45,9 @@ export const UserList = () => {
             <tbody>
               {!user.isLoading &&
                 user.users.length > 0 &&
-                user.users.map((users: any) => <UserListItem users={users} />)}
+                user.users.map((users: any) => (
+                  <UserListItem key={users.id} users={users} />
+                ))}
             </tbody>
           </table>
 

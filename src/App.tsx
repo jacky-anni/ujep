@@ -18,18 +18,10 @@ import Profile from "./pages/students/Profile";
 import EditStudents from "./components/students/EditStudents";
 import EditStudentsInfoSupp from "./components/students/EditStudentsInfoSupp";
 
-const Students = React.lazy(() =>
-  import("./pages/students/Students").then(({ Students }) => ({
-    default: Students,
-  }))
-);
-
 // users
-const Users = React.lazy(() =>
-  import("./pages/users/Users").then(({ Users }) => ({
-    default: Users,
-  }))
-);
+import { Faculties, Users } from "./components/ultils/routes";
+// students
+import { Students } from "./components/ultils/routes";
 
 const App: React.FC = () => {
   return (
@@ -52,6 +44,15 @@ const App: React.FC = () => {
             element={
               <Suspense fallback={<Loader />}>
                 <Students />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path='/dashbord/faculty'
+            element={
+              <Suspense fallback={<Loader />}>
+                <Faculties />
               </Suspense>
             }
           />

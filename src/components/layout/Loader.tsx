@@ -17,7 +17,9 @@ export const Loader = () => {
           <Skeleton variant='rectangular' height={60} />
           <Skeleton />
           <Skeleton animation='wave' />
-          <Skeleton animation={false} />
+          <Skeleton animation='wave' />
+          <Skeleton animation='wave' />
+          <Skeleton animation='wave' />
         </Box>
       </div>
     </>

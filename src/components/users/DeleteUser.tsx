@@ -6,6 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { deleteUser_ } from "../../redux/actions/UserAction";
 import { useAppDispatch } from "../../redux/hooks/hooks";
 import { deleteUser } from "../../redux/UserSlice";
+import { Toast } from "./../layout/Toast";
 
 export const DeleteUser = ({ user }: any) => {
   const dispatch = useAppDispatch();
@@ -22,27 +23,10 @@ export const DeleteUser = ({ user }: any) => {
         const data = await deleteUser_(user.person.uuid);
 
         if (data && data.status) {
-          toast.error(data.message, {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: false,
-            progress: undefined,
-            theme: "colored",
-          });
+          Toast("error", data.message);
         } else {
-          toast.success("Voulez-vous vraiment supprimer ", {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: false,
-            progress: undefined,
-            theme: "colored",
-          });
+          Toast("error", "Voulez-vous vraiment supprimer");
+
           dispatch(deleteUser(data));
         }
       },

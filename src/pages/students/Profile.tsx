@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Bars } from "react-loader-spinner";
 import { Link, useParams } from "react-router-dom";
-import AppTitle from "../../components/partials/AppTitle";
+import { AppTitle } from "../../components/partials/AppTitle";
 import BannerStudents from "../../components/students/BannerStudents";
 import { showStudents } from "../../redux/actions/StudentAction";
 import { studentFetch, clearLoading } from "../../redux/StudentsSlice";
@@ -32,7 +32,7 @@ const Profile = () => {
 
   return (
     <>
-      <AppTitle title={"Profile"} />
+      <AppTitle title={"Profile"} img='sdds' />
       <div className='row'>
         <div className='col-md-3'>
           {!currentStudent.isLoading ? (

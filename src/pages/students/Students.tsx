@@ -1,9 +1,9 @@
 import StudentsList from "../../components/students/StudentsList";
-import AppTitle from "../../components/partials/AppTitle";
+import { AppTitle } from "../../components/partials/AppTitle";
 export const Students = () => {
   return (
     <>
-      <AppTitle title={"Ajouter etudiant"} />
+      <AppTitle title={"Ajouter etudiant"} img='students' />
       <StudentsList />
     </>
   );

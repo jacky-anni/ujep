@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { MenuAvatar } from "./../Ui/MenuAvatar";
 
 const LeftSideBar = () => {
   return (
@@ -14,12 +15,22 @@ const LeftSideBar = () => {
             <ul id='side-menu'>
               <li className='menu-title'>Navigation</li>
               <li>
-                <Link to='#sidebarDashboards' data-bs-toggle='collapse'>
-                  <i className='fa fa-user' />
+                <Link to='/dashbord/users'>
+                  <MenuAvatar img={"users"} />
                   <span className='badge bg-info rounded-pill float-end'>
                     4
                   </span>
-                  <span> Employées </span>
+                  <span className='bold'> Utilisateurs </span>
+                </Link>
+              </li>
+
+              <li>
+                <Link to='#sidebarDashboards' data-bs-toggle='collapse'>
+                  <MenuAvatar img={"employees"} />
+                  <span className='badge bg-info rounded-pill float-end'>
+                    4
+                  </span>
+                  <span className='bold'> Employées </span>
                 </Link>
                 <div className='collapse' id='sidebarDashboards'>
                   <ul className='nav-second-level'>
@@ -43,21 +54,21 @@ const LeftSideBar = () => {
 
               <li>
                 <Link to='/dashbord/students'>
-                  <i className='fa fa-user' />
+                  <MenuAvatar img={"students"} />
                   <span className='badge bg-info rounded-pill float-end'>
                     4
                   </span>
-                  <span> Etudiants </span>
+                  <span className='bold'> Etudiants </span>
                 </Link>
               </li>
 
               <li>
-                <Link to='/dashbord/users'>
-                  <i className='fa fa-user' />
-                  <span className='badge bg-info rounded-pill float-end'>
+                <Link to='/dashbord/faculty'>
+                  <MenuAvatar img={"faculty"} />
+                  {/* <span className='badge bg-info rounded-pill float-end'>
                     4
-                  </span>
-                  <span> Utilisateurs </span>
+                  </span> */}
+                  <span className='bold'> Les Facultés </span>
                 </Link>
               </li>
             </ul>

@@ -2,6 +2,7 @@ import { Avatar } from "antd";
 import React from "react";
 import { UserOutlined } from "@ant-design/icons";
 import { DeleteUser } from "./DeleteUser";
+import { EditUsers } from "./EditUsers";
 
 export const UserListItem = ({ users }: any) => {
   return (
@@ -30,9 +31,8 @@ export const UserListItem = ({ users }: any) => {
           <a href='javascript: void(0);' className='btn btn-xs btn-light m-1'>
             <i className='fa fa-user' />
           </a>
-          <a href='javascript: void(0);' className='btn btn-xs btn-info m-1'>
-            <i className='fa fa-edit' />
-          </a>
+
+          <EditUsers user={users} />
 
           <DeleteUser user={users} />
         </td>

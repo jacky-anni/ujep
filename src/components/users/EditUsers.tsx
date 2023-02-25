@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal } from "antd";
 import * as Yup from "yup";
 import { Form, Field, Formik } from "formik";
 import SubmitButtom from "../Ui/form/SubmitButtom";
-import { toast, ToastContainer } from "react-toastify";
 import { Divider } from "antd";
-import { addUser } from "../../redux/actions/UserAction";
+import { editUser_ } from "../../redux/actions/UserAction";
 import { Alert } from "@mui/material";
-import { addUsers } from "../../redux/UserSlice";
-import { useAppDispatch } from "./../../redux/hooks/hooks";
+import { editUsers } from "../../redux/UserSlice";
+import { useAppDispatch } from "../../redux/hooks/hooks";
 import { Toast } from "../layout/Toast";
 
-export const AddUsers = () => {
+export const EditUsers = ({ user }: any) => {
   // set open
   const [open, setOpen] = useState(false);
   // set loading
@@ -20,6 +19,8 @@ export const AddUsers = () => {
   const [errorsState, setErrorsState] = useState(null);
   // use app dispatch
   const dispatch = useAppDispatch();
+  // initiale values
+  var initialValues;
 
   // shema validation
   const SignupSchema = Yup.object().shape({
@@ -28,42 +29,31 @@ export const AddUsers = () => {
       .required("Ce champ est obligatoire !"),
     username: Yup.string().required("Ce champ est obligatoire !"),
     role_name: Yup.string().required("Ce champ est obligatoire !"),
-    password: Yup.string()
-      .required("Ce champ est obligatoire !")
-      .matches(
-        /^(?=.{8,})/,
-        "Le mot de passe doit contenir au moins 8 caractères"
-      ),
-    password_confirm: Yup.string()
-      .required("Ce champ est obligatoire !")
-      .oneOf(
-        [Yup.ref("password"), null],
-        "Les mots de passe ne sont pas iddentiques"
-      ),
   });
 
   // Form html
   const form = (
     <Formik
       initialValues={{
-        email: "",
-        username: "",
-        role_name: "",
-        password: "",
-        password_confirm: "",
+        email: user.person.email,
+        username: user.username,
+        role_name: user.role.role_name,
       }}
       validationSchema={SignupSchema}
       onSubmit={async (values, { resetForm }) => {
         //same shape as initial values
         setLoading(true);
-        // insert employee
-        const data = await addUser({
-          email: values.email,
-          username: values.username,
-          role_name: values.role_name,
-          password: values.password,
-        });
-        // if errors
+        // insert users
+        const data = await editUser_(
+          {
+            email: values.email,
+            username: values.username,
+            role_name: values.role_name,
+          },
+          user.person.uuid
+        );
+
+        //if errors
 
         if (data.status) {
           // return the error message
@@ -71,10 +61,8 @@ export const AddUsers = () => {
           // set loading to false, desactivate
           setLoading(false);
         } else {
-          console.log(data);
-
           // update states
-          dispatch(addUsers(data));
+          dispatch(editUsers(data));
           // set loading is false
           setLoading(false);
           // off the modal
@@ -102,7 +90,7 @@ export const AddUsers = () => {
               </p>
             )}
             <div className='col-md-6 position-relative mb-2'>
-              <label>Entrer l'email</label>
+              <label>Email</label>
               <Field
                 className='form-control '
                 name='email'
@@ -115,7 +103,7 @@ export const AddUsers = () => {
             </div>
 
             <div className='col-md-6 position-relative mb-2'>
-              <label>Entrer le nom d'utilisateur</label>
+              <label>Nom d'utilisateur</label>
               <Field
                 className='form-control '
                 name='username'
@@ -143,38 +131,6 @@ export const AddUsers = () => {
             </div>
           </div>
 
-          <div className='row'>
-            <div className='col-md-6 position-relative mb-2'>
-              <label>Entrer le mot de passe</label>
-              <Field
-                type='password'
-                className='form-control '
-                name='password'
-                placeholder='Entrer le mot de passe'
-              />
-
-              <span className='errors-field'>
-                {errors.password ? <>{errors.password}</> : null}
-              </span>
-            </div>
-
-            <div className='col-md-6 position-relative mb-2'>
-              <label>Répéter le mot de passe</label>
-              <Field
-                type='password'
-                className='form-control '
-                name='password_confirm'
-                placeholder='Répéter le mot de passe'
-              />
-
-              <span className='errors-field'>
-                {errors.password_confirm ? (
-                  <>{errors.password_confirm}</>
-                ) : null}
-              </span>
-            </div>
-          </div>
-
           <SubmitButtom message={"Soumettre"} loading={loading} />
         </Form>
       )}
@@ -182,18 +138,21 @@ export const AddUsers = () => {
   );
   return (
     <>
-      <button
+      <button className='btn btn-xs btn-info m-1' onClick={() => setOpen(true)}>
+        <i className='fa fa-edit' />
+      </button>
+      {/* <button
         onClick={() => setOpen(true)}
         type='button'
         className='btn btn-primary'
         data-bs-target='#custom-modal'
       >
         <i className='fa fa-plus'></i> Ajouter utilisateur
-      </button>
+      </button> */}
       <Modal
         title={
           <>
-            <h4>Ajouter un utilisateur</h4>
+            <h4>Modifer cet utilisateur</h4>
           </>
         }
         open={open}
