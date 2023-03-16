@@ -4,7 +4,7 @@ import { Form, Field, Formik } from "formik";
 import { AppTitle } from "../partials/AppTitle";
 import SubmitButtom from "../Ui/form/SubmitButtom";
 import { ToastContainer, toast } from "react-toastify";
-import { addStudents } from "../../redux/actions/StudentAction";
+import { addStudents } from "../../actions/StudentAction";
 import { useNavigate } from "react-router-dom";
 
 const AddStudents: React.FC<{}> = () => {

@@ -5,7 +5,7 @@ import { Form, Field, Formik } from "formik";
 import SubmitButtom from "../Ui/form/SubmitButtom";
 import { toast, ToastContainer } from "react-toastify";
 import { Divider } from "antd";
-import { addUser } from "../../redux/actions/UserAction";
+import { addUser } from "../../actions/UserAction";
 import { Alert } from "@mui/material";
 import { addUsers } from "../../redux/UserSlice";
 import { useAppDispatch } from "./../../redux/hooks/hooks";

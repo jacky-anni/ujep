@@ -5,11 +5,9 @@ import { AppTitle } from "../../components/partials/AppTitle";
 export const Faculties = () => {
   return (
     <>
-      <div className='row '>
-        <AppTitle title={"Les facultes"} img={"users"} />
-        <div className='col-md-12 bg-white'>
-          <FacultyList />
-        </div>
+      <AppTitle title={"Les facultes"} img={"users"} />
+      <div className='bg-white'>
+        <FacultyList />
       </div>
     </>
   );

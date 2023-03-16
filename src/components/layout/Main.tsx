@@ -4,7 +4,7 @@ import LeftSideBar from "../partials/LeftSideBar";
 import Footer from "../partials/Footer";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "./../../redux/hooks/hooks";
-import { setCurrentUser } from "../../redux/actions/UserAction";
+import { setCurrentUser } from "../../actions/UserAction";
 import { getCurrentUser, logoutUser } from "../../redux/UserSlice";
 import { ToastContainer } from "react-toastify";
 import { Loader } from "./Loader";
@@ -34,7 +34,7 @@ const Main = () => {
           <TopBar />
           <LeftSideBar />
           <ToastContainer
-            position='bottom-right'
+            position='bottom-center'
             autoClose={5000}
             hideProgressBar={false}
             newestOnTop={false}
@@ -43,7 +43,7 @@ const Main = () => {
             pauseOnFocusLoss
             draggable
             pauseOnHover
-            theme='colored'
+            theme='light'
           />
 
           {/* ============================================================== */}

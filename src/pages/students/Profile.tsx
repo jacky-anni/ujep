@@ -3,55 +3,33 @@ import { Bars } from "react-loader-spinner";
 import { Link, useParams } from "react-router-dom";
 import { AppTitle } from "../../components/partials/AppTitle";
 import BannerStudents from "../../components/students/BannerStudents";
-import { showStudents } from "../../redux/actions/StudentAction";
-import { studentFetch, clearLoading } from "../../redux/StudentsSlice";
-import { useAppDispatch, useAppSelector } from "./../../redux/hooks/hooks";
+import { showStudents } from "../../actions/StudentAction";
 import PersonalIformations from "./../../components/students/PersonalIformations";
 import { Skeleton } from "antd";
 import PersonalInformationSupp from "../../components/students/PersonalInformationSupp";
+import { useQuery } from "@tanstack/react-query";
+import { StudentKey } from "../../ultils/keys";
+import { StudentsLoading } from "./../../components/students/StudentsLoading";
 const Profile = () => {
-  const dispatch = useAppDispatch();
-  // fetch studendts
-  const currentStudent = useAppSelector((state) => state.student);
   const { student } = useParams();
 
-  // useeffects
-  useEffect(() => {
-    (async () => {
-      // set loading
-      dispatch(clearLoading());
-      // fetch data
-      const data = await showStudents(student);
-      if (data.status === 404) {
-        console.log(data);
-      } else {
-        dispatch(studentFetch(data));
-      }
-    })();
-  }, [student]);
+  const { data, isLoading } = useQuery([StudentKey, student], () =>
+    showStudents(student)
+  );
 
   return (
     <>
       <AppTitle title={"Profile"} img='sdds' />
       <div className='row'>
         <div className='col-md-3'>
-          {!currentStudent.isLoading ? (
-            <BannerStudents student={currentStudent.student} />
+          {isLoading ? (
+            <>
+              <div className='card-body bg-light'>
+                <StudentsLoading />
+              </div>
+            </>
           ) : (
-            <div className='card card-body'>
-              <center>
-                <Bars
-                  height='50'
-                  width='50'
-                  color='#7d56c2'
-                  ariaLabel='bars-loading'
-                  wrapperStyle={{ display: "block" }}
-                  wrapperClass=''
-                  visible={true}
-                />
-                <p style={{ marginTop: "0px" }}>Chargment en cours...</p>
-              </center>
-            </div>
+            <BannerStudents student={data} />
           )}
         </div>
 
@@ -82,28 +60,22 @@ const Profile = () => {
               </ul>
               <div className='tab-content'>
                 <div className='tab-pane show active' id='home-b1'>
-                  {currentStudent && !currentStudent.isLoading ? (
-                    <PersonalIformations student={currentStudent.student} />
-                  ) : (
+                  {isLoading ? (
                     <Skeleton active />
+                  ) : (
+                    <PersonalIformations student={data} />
                   )}
                 </div>
                 <div className='tab-pane' id='profile-b1'>
-                  {currentStudent &&
-                  !currentStudent.isLoading &&
-                  currentStudent.student ? (
-                    <PersonalInformationSupp
-                      student={currentStudent.student}
-                      id={student}
-                    />
-                  ) : (
+                  {isLoading ? (
                     <Skeleton active />
+                  ) : (
+                    <PersonalInformationSupp student={data} id={student} />
                   )}
                 </div>
               </div>
             </div>
           </div>{" "}
-          {/* end card*/}
         </div>
       </div>
     </>

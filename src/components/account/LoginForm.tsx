@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { loginUser } from "../../redux/UserSlice";
 import SubmitButtom from "../Ui/form/SubmitButtom";
-import { login } from "./../../redux/actions/UserAction";
+import { login } from "../../actions/UserAction";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";

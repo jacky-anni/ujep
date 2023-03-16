@@ -10,11 +10,12 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { useEffect } from "react";
 import EmployeeItem from "./EmployeeItem";
 import { ThreeDots } from "react-loader-spinner";
-import { GetEmployees } from "../../redux/actions/EmployeesAction";
+import { GetEmployees } from "../../actions/EmployeesAction";
 
 const EmployeeList: React.FC = (props) => {
   const dispatch = useAppDispatch();
   const employee = useAppSelector((state) => state.employee);
+
   useEffect(() => {
     (async () => {
       // fetch data

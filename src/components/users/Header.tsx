@@ -12,19 +12,7 @@ export const Header = () => {
         </div>
         <div className='col-6 text-sm-end'>
           <AddUsers />
-          {/* <div className=' text-sm-end'>
-            <Link to='/dashbord/add-students'>
-              <button
-                type='button'
-                className='btn btn-primary'
-                data-bs-target='#custom-modal'
-              >
-                <i className='fa fa-plus'></i> Ajouter etudiant
-              </button>
-            </Link>
-          </div> */}
         </div>
-        {/* end col*/}
       </div>
     </>
   );

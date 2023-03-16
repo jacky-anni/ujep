@@ -63,7 +63,7 @@ const LeftSideBar = () => {
               </li>
 
               <li>
-                <Link to='/dashbord/faculty'>
+                <Link to='/dashbord/faculties'>
                   <MenuAvatar img={"faculty"} />
                   {/* <span className='badge bg-info rounded-pill float-end'>
                     4

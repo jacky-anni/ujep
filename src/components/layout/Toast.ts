@@ -7,19 +7,19 @@ interface Config {
   closeOnClick: boolean;
   pauseOnHover: boolean;
   draggable: boolean;
-  progress: undefined;
-  theme: "colored";
+  progress: boolean;
+  theme: string;
 }
 
 const config: Config = {
-  position: "bottom-right",
+  position: "bottom-center",
   autoClose: 5000,
   hideProgressBar: true,
   closeOnClick: true,
   pauseOnHover: true,
   draggable: false,
-  progress: undefined,
-  theme: "colored",
+  progress: true,
+  theme: "light",
 };
 
 export const Toast = (type: string, message: string) => {
@@ -32,8 +32,7 @@ export const Toast = (type: string, message: string) => {
         closeOnClick: config.closeOnClick,
         pauseOnHover: config.pauseOnHover,
         draggable: config.draggable,
-        progress: config.progress,
-        theme: config.theme,
+        //progress: ,
       });
       break;
 
@@ -45,8 +44,7 @@ export const Toast = (type: string, message: string) => {
         closeOnClick: config.closeOnClick,
         pauseOnHover: config.pauseOnHover,
         draggable: config.draggable,
-        progress: config.progress,
-        theme: config.theme,
+        //progress: config.progress,
       });
       break;
 
@@ -58,7 +56,7 @@ export const Toast = (type: string, message: string) => {
         closeOnClick: config.closeOnClick,
         pauseOnHover: config.pauseOnHover,
         draggable: config.draggable,
-        progress: config.progress,
+        //progress: config.progress,
       });
       break;
   }

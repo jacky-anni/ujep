@@ -8,7 +8,7 @@ import {
   addStudents,
   editStudents,
   showStudents,
-} from "../../redux/actions/StudentAction";
+} from "../../actions/StudentAction";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "./../../redux/hooks/hooks";
 import { studentFetch, clearLoading } from "../../redux/StudentsSlice";

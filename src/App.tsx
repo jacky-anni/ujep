@@ -18,10 +18,9 @@ import Profile from "./pages/students/Profile";
 import EditStudents from "./components/students/EditStudents";
 import EditStudentsInfoSupp from "./components/students/EditStudentsInfoSupp";
 
-// users
-import { Faculties, Users } from "./components/ultils/routes";
-// students
-import { Students } from "./components/ultils/routes";
+import { Faculties, Users, ShowFaculties, Students } from "./ultils/routes";
+import { CreateFaculty } from "./pages/faculties/CreateFaculty";
+import { EditFaculty } from "./pages/faculties/EditFaculty";
 
 const App: React.FC = () => {
   return (
@@ -49,10 +48,37 @@ const App: React.FC = () => {
           />
 
           <Route
-            path='/dashbord/faculty'
+            path='/dashbord/faculties'
             element={
               <Suspense fallback={<Loader />}>
                 <Faculties />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path='/dashbord/faculty/:idFaculty'
+            element={
+              <Suspense fallback={<Loader />}>
+                <ShowFaculties />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path='/dashbord/faculty/create'
+            element={
+              <Suspense fallback={<Loader />}>
+                <CreateFaculty />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path='/dashbord/faculty/edit/:idFaculty'
+            element={
+              <Suspense fallback={<Loader />}>
+                <EditFaculty />
               </Suspense>
             }
           />

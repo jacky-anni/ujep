@@ -1,7 +1,7 @@
 import { Avatar, Empty, Table } from "antd";
 import React, { useEffect } from "react";
 import { Header } from "./Header";
-import { getUsers_ } from "../../redux/actions/UserAction";
+import { getUsers_ } from "../../actions/UserAction";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { getUsers } from "../../redux/UserSlice";
 import { UserListItem } from "./UserListItem";

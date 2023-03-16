@@ -2,28 +2,20 @@ import { Empty } from "antd";
 import React, { useEffect } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { Link } from "react-router-dom";
-import { GetStudents } from "../../redux/actions/StudentAction";
+import { GetStudents } from "../../actions/StudentAction";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { studentsFetch } from "../../redux/StudentsSlice";
 import StudentSearchBar from "./StudentSearchBar";
 import StudentItem from "./StudentItem";
 import StudentPagination from "./StudentPagination";
+import { useQuery } from "@tanstack/react-query";
+import { StudentKey } from "../../ultils/keys";
+import { StudentsLoading } from "./StudentsLoading";
 
 const StudentsList = () => {
-  const dispatch = useAppDispatch();
-  const student = useAppSelector((state) => state.student);
-
-  useEffect(() => {
-    (async () => {
-      // fetch data
-      const data = await GetStudents();
-      if (data.status === 404) {
-        console.log(data);
-      } else {
-        dispatch(studentsFetch(data));
-      }
-    })();
-  }, [dispatch]);
+  const { data: students, isLoading } = useQuery([StudentKey], () =>
+    GetStudents()
+  );
 
   return (
     <>
@@ -50,9 +42,9 @@ const StudentsList = () => {
                 {/* end col*/}
               </div>
               <div className='table-responsive'>
-                {student.total} etudiants
+                {students && students.meta.total} etudiants
                 <table className='table table-centered table-nowrap table-hover mb-0'>
-                  {student.students.length > 0 && (
+                  {students && students.data.length > 0 && (
                     <thead>
                       <tr>
                         <th>Nom</th>
@@ -66,58 +58,34 @@ const StudentsList = () => {
                   )}
 
                   <tbody>
-                    {/* if the employees is not empty , thetch data*/}
-                    {!student.isLoading &&
-                      student.students.length > 0 &&
-                      student.students.map((student: any) => (
-                        <StudentItem students={student} />
-                      ))}
+                    {isLoading ? (
+                      <StudentsLoading />
+                    ) : (
+                      <>
+                        {students.data.map((student: any) => (
+                          <StudentItem students={student} />
+                        ))}
+                      </>
+                    )}
                   </tbody>
                 </table>
-                {/* loading state */}
-                {student.isLoading && (
-                  <>
-                    <center>
-                      <ThreeDots
-                        height='90'
-                        width='90'
-                        radius='9'
-                        color='#7d56c2'
-                        ariaLabel='three-dots-loading'
-                        wrapperStyle={{ display: "block" }}
-                        visible={true}
-                      />
-                      <p style={{ marginTop: "-30px" }}>
-                        Chargment en cours...
-                      </p>
-                    </center>
-                  </>
-                )}
-                {/* errors */}
-                {!student.isLoading && student.errors != null && (
-                  <p className='alert alert-danger'>Une erreur </p>
-                )}
                 {/* if the employees is empty */}
-                {!student.isLoading &&
-                  student.errors === null &&
-                  student.students.length === 0 && (
-                    <p className='mt-3 mb-0'>
-                      <Empty description={"Pas de données pour l'instant"} />
-                    </p>
-                  )}
+                {students && students.data.length === 0 && (
+                  <div className='row'>
+                    {" "}
+                    <Empty />
+                  </div>
+                )}
               </div>
-              {student.students.length > 0 && (
+              {students && students.data.length > 0 && (
                 <StudentPagination
-                  meta={student.meta}
-                  total={student.meta.total}
+                  meta={students.meta}
+                  total={students.meta.total}
                 />
               )}
-            </div>{" "}
-            {/* end card-body*/}
-          </div>{" "}
-          {/* end card*/}
-        </div>{" "}
-        {/* end col */}
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

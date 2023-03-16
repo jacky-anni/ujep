@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ErrorManagement } from "./../../components/ultils/errorManagement";
+import { ErrorManagement } from "../ultils/errorManagement";
 
 export const addUser = async (data: any) => {
   try {

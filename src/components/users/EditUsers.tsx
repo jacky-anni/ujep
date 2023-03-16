@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { Form, Field, Formik } from "formik";
 import SubmitButtom from "../Ui/form/SubmitButtom";
 import { Divider } from "antd";
-import { editUser_ } from "../../redux/actions/UserAction";
+import { editUser_ } from "../../actions/UserAction";
 import { Alert } from "@mui/material";
 import { editUsers } from "../../redux/UserSlice";
 import { useAppDispatch } from "../../redux/hooks/hooks";

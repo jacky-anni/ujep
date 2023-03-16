@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { deleteField } from "../../redux/actions/DeleteAction";
+import { deleteField } from "../../actions/DeleteAction";
 import LunchDeleteModal from "../Ui/LunchDeleteModal";
 import { useAppDispatch } from "../../redux/hooks/hooks";
 import { studentDelete } from "../../redux/StudentsSlice";

@@ -3,10 +3,7 @@ import * as Yup from "yup";
 import { Form, Field, Formik } from "formik";
 import { AppTitle } from "../partials/AppTitle";
 import SubmitButtom from "../Ui/form/SubmitButtom";
-import {
-  editEmployee,
-  showEmployee,
-} from "../../redux/actions/EmployeesAction";
+import { editEmployee, showEmployee } from "../../actions/EmployeesAction";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { ToastContainer, toast } from "react-toastify";
 import { EmployeeFetch, clearLoading } from "../../redux/EmployeeSlice";

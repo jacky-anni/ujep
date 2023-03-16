@@ -2,7 +2,7 @@ import type { PaginationProps } from "antd";
 import { Pagination } from "antd";
 import { useAppDispatch } from "../../redux/hooks/hooks";
 import { setPagination, clearLoading } from "../../redux/StudentsSlice";
-import { GetStudents } from "../../redux/actions/StudentAction";
+import { GetStudents } from "../../actions/StudentAction";
 
 const StudentPagination = (props: any) => {
   const dispatch = useAppDispatch();

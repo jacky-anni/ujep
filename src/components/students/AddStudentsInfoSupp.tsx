@@ -4,10 +4,7 @@ import { Form, Field, Formik } from "formik";
 import { AppTitle } from "../partials/AppTitle";
 import SubmitButtom from "../Ui/form/SubmitButtom";
 import { ToastContainer, toast } from "react-toastify";
-import {
-  showStudents,
-  addStudentsSupp,
-} from "../../redux/actions/StudentAction";
+import { showStudents, addStudentsSupp } from "../../actions/StudentAction";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import BannerStudents from "./BannerStudents";
 import { studentFetch } from "../../redux/StudentsSlice";

@@ -3,7 +3,7 @@ import { ExclamationCircleFilled } from "@ant-design/icons";
 import { Modal } from "antd";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { deleteUser_ } from "../../redux/actions/UserAction";
+import { deleteUser_ } from "../../actions/UserAction";
 import { useAppDispatch } from "../../redux/hooks/hooks";
 import { deleteUser } from "../../redux/UserSlice";
 import { Toast } from "./../layout/Toast";

@@ -2,7 +2,7 @@ import type { PaginationProps } from "antd";
 import { Pagination } from "antd";
 import { useAppDispatch } from "../../redux/hooks/hooks";
 import { setPagination, clearLoading } from "../../redux/EmployeeSlice";
-import { GetEmployees } from "../../redux/actions/EmployeesAction";
+import { GetEmployees } from "../../actions/EmployeesAction";
 
 const EmployeePagination = (props: any) => {
   const dispatch = useAppDispatch();

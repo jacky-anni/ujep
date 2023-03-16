@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { logout } from "../../redux/actions/UserAction";
+import { logout } from "../../actions/UserAction";
 import { logoutUser } from "../../redux/UserSlice";
 import { useAppDispatch, useAppSelector } from "./../../redux/hooks/hooks";
 
