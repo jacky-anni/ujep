@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SubmitButtom from "../../Ui/form/SubmitButtom";
 import { useForm } from "react-hook-form";
-import { Divider } from "antd";
 import validationSchema from "../../../shemaForms/ShemaFaculty";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CreateFaculty } from "../../../actions/FacultyActions";

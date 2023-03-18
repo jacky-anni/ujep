@@ -43,8 +43,6 @@ export const StudentSlice = createSlice({
     },
 
     studentDelete: (state, action) => {
-      console.log(action.payload);
-
       state.isLoading = false;
       state.students = state.students.filter(
         (student: any) => student.personId !== action.payload.person.id

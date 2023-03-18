@@ -42,38 +42,14 @@ export const getUsers_ = async () => {
 };
 
 export const login = async (data: any) => {
-  try {
-    const res = await axios.post("auth/login", data);
-    return res.data;
-  } catch (error) {
-    return {
-      status: 404,
-      message: "Email ou mot de passe est incorrect",
-    };
-  }
+  return axios.post("auth/login", data).then((res) => res.data);
 };
 
 // logoutUser
 export const logout = async () => {
-  try {
-    const res = await axios.post("auth/logout", {});
-    return res.data;
-  } catch (error) {
-    return {
-      status: 401,
-      message: "Vous devez connectez pour voir cette page",
-    };
-  }
+  return axios.post("auth/logout").then((res) => res.data);
 };
 
-export const setCurrentUser = async () => {
-  try {
-    const res = await axios.get("auth/user");
-    return res.data;
-  } catch (error) {
-    return {
-      status: 401,
-      message: "Vous devez connectez pour voir cette page",
-    };
-  }
+export const getUser = async () => {
+  return axios.get("auth/user").then((res) => res.data);
 };

@@ -12,13 +12,18 @@ import { Loader } from "./components/layout/Loader";
 // students list
 
 // import Students from "./pages/students/Students";
-import AddStudents from "./components/students/AddStudents";
 import AddStudentsInfoSupp from "./components/students/AddStudentsInfoSupp";
 import Profile from "./pages/students/Profile";
-import EditStudents from "./components/students/EditStudents";
 import EditStudentsInfoSupp from "./components/students/EditStudentsInfoSupp";
 
-import { Faculties, Users, ShowFaculties, Students } from "./ultils/routes";
+import {
+  Faculties,
+  Users,
+  ShowFaculties,
+  Students,
+  CreateStudents,
+  EditStudents,
+} from "./ultils/routes";
 import { CreateFaculty } from "./pages/faculties/CreateFaculty";
 import { EditFaculty } from "./pages/faculties/EditFaculty";
 
@@ -36,7 +41,6 @@ const App: React.FC = () => {
             }
           />
           <Route path='/dashbord/employees' element={<Employees />} />
-          {/* <Route path='/dashbord/students' element={<Students />} /> */}
 
           <Route
             path='/dashbord/students'
@@ -94,16 +98,25 @@ const App: React.FC = () => {
           <Route
             path='/dashbord/add-students'
             element={
-              <Suspense fallback={<h1>ssss</h1>}>
-                <AddStudents />
+              <Suspense fallback={<Loader />}>
+                <CreateStudents />
               </Suspense>
             }
           />
 
+          {/* <Route
+            path='/dashbord/edit-students/:student'
+            element={
+              <Suspense fallback={<Loader />}>
+                <CreateStudents />
+              </Suspense>
+            }
+          /> */}
+
           <Route
             path='/dashbord/add-students-infos/:student'
             element={
-              <Suspense fallback={<h1>ssss</h1>}>
+              <Suspense fallback={<Loader />}>
                 <AddStudentsInfoSupp />
               </Suspense>
             }
@@ -130,7 +143,7 @@ const App: React.FC = () => {
           <Route
             path='/dashbord/edit-students/:student'
             element={
-              <Suspense fallback={<h1>ssss</h1>}>
+              <Suspense fallback={<Loader />}>
                 <EditStudents />
               </Suspense>
             }

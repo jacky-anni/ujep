@@ -29,13 +29,13 @@ const StudentItem = ({ students }: any) => {
             </Link>{" "}
             &nbsp;
             <span></span>
-            {/* <button
+            <button
               className='btn btn-danger btn-xs'
               type='button'
               style={{ fontWeight: "bold" }}
             >
               <DeleteStudent id={students.person.uuid} />
-            </button> */}
+            </button>
           </div>
         </td>
       </tr>

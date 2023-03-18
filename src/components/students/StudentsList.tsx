@@ -63,7 +63,7 @@ const StudentsList = () => {
                     ) : (
                       <>
                         {students.data.map((student: any) => (
-                          <StudentItem students={student} />
+                          <StudentItem students={student} key={student.id} />
                         ))}
                       </>
                     )}

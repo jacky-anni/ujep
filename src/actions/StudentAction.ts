@@ -35,7 +35,7 @@ export const GetStudents = (page: number = 1) => {
 };
 
 // add Students
-export const addStudents = (data: Students) => {
+export const addStudents = (data: any) => {
   return axios.post(`/students`, data).then((res) => res.data);
 };
 

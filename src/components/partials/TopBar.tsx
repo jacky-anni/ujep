@@ -1,33 +1,37 @@
-import { useEffect, useRef, useState } from "react";
+import { Box, LinearProgress } from "@mui/material";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../actions/UserAction";
-import { logoutUser } from "../../redux/UserSlice";
-import { useAppDispatch, useAppSelector } from "./../../redux/hooks/hooks";
 
-const TopBar = () => {
-  const { user } = useAppSelector((state) => state.user);
-  const [currentUser, setCurrentUser] = useState<any>("");
-  const dispatch = useAppDispatch();
+const TopBar = ({ user }: any) => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user) {
-      setCurrentUser(user);
-    } else {
-      setCurrentUser("Chrgement...");
+  const { isLoading, mutate } = useMutation(
+    async () => {
+      return await logout();
+    },
+    {
+      onSuccess: (result) => {
+        localStorage.removeItem("wpwuab");
+        delete axios.defaults.headers.common["Authorization"];
+        return navigate("/");
+      },
     }
-  }, [user]);
+  );
 
   const onClick = async () => {
-    const data = await logout();
-    if (data.status !== 401) {
-      dispatch(logoutUser());
-      return navigate("/");
-    }
+    mutate();
   };
 
   return (
     <>
+      {isLoading && (
+        <Box sx={{ width: "100%" }}>
+          <LinearProgress color='secondary' />
+        </Box>
+      )}
+
       {/* Topbar Start */}
       <div className='navbar-custom'>
         <div className='container-fluid'>
@@ -170,7 +174,7 @@ const TopBar = () => {
                   className='rounded-circle'
                 />
                 <span className='pro-user-name ms-1'>
-                  {currentUser.prenom} {currentUser.nom}{" "}
+                  {user.person.prenom} {user.person.nom}{" "}
                   <i className='fa fa-chevron-down' />
                 </span>
               </span>

@@ -6,6 +6,7 @@ export const Users = React.lazy(() =>
     default: Users,
   }))
 );
+//============================================================================================
 
 // students
 export const Students = React.lazy(() =>
@@ -14,6 +15,21 @@ export const Students = React.lazy(() =>
   }))
 );
 
+// add students
+export const CreateStudents = React.lazy(() =>
+  import("../pages/students/CreateStudents").then(({ CreateStudents }) => ({
+    default: CreateStudents,
+  }))
+);
+
+// edit students
+export const EditStudents = React.lazy(() =>
+  import("../pages/students/EditStudents").then(({ EditStudents }) => ({
+    default: EditStudents,
+  }))
+);
+//================================================================================================
+//============================================================================================
 // faculties
 export const Faculties = React.lazy(() =>
   import("../pages/faculties/Faculties").then(({ Faculties }) => ({
@@ -38,3 +54,4 @@ export const ShowFaculties = React.lazy(() =>
     default: ShowFaculties,
   }))
 );
+//============================================================================================
