@@ -15,7 +15,7 @@ export const StudentsLoading = () => {
             wrapperStyle={{ display: "block" }}
             visible={true}
           />
-          <h6>Chargment en cours...</h6>
+          <h6>Chargement en cours...</h6>
         </p>
       </center>
     </>

@@ -1,18 +1,17 @@
-import React, { useEffect } from "react";
 import TopBar from "../partials/TopBar";
 import LeftSideBar from "../partials/LeftSideBar";
 import Footer from "../partials/Footer";
 import { Outlet, useNavigate } from "react-router-dom";
 import { getUser } from "../../actions/UserAction";
 import { ToastContainer } from "react-toastify";
-import { Loader } from "./Loader";
 import { useQuery } from "@tanstack/react-query";
 import { UserKey } from "../../ultils/keys";
 import NetWorkConnection from "./NetWorkConnection";
+import { Preloader } from "./Preloader";
 const Main = () => {
   const navigate = useNavigate();
 
-  const { data, isLoading, isError, error } = useQuery([UserKey], () =>
+  const { data, isLoading, isError, error } = useQuery([UserKey, 1], () =>
     getUser()
   );
   const err: any = error;
@@ -20,9 +19,8 @@ const Main = () => {
   return (
     <>
       {isLoading ? (
-        <Loader />
+        <Preloader />
       ) : (
-        // <LoaderAuth />
         <>
           {err && err.response?.status === 401 ? (
             navigate("/")
@@ -32,7 +30,7 @@ const Main = () => {
             <div>
               <div id='wrapper'>
                 <TopBar user={data} />
-                <LeftSideBar />
+                <LeftSideBar user={data} />
                 <ToastContainer
                   position='bottom-right'
                   autoClose={5000}
@@ -45,10 +43,6 @@ const Main = () => {
                   pauseOnHover
                   theme='light'
                 />
-
-                {/* ============================================================== */}
-                {/* Start Page Content here */}
-                {/* ============================================================== */}
                 <div className='content-page'>
                   <div className='content'>
                     {/* Start Content*/}
@@ -63,18 +57,10 @@ const Main = () => {
                           </div>
                         </div>
                       </div>
-                      {/* end page title */}
                     </div>
-                    {/* container */}
                   </div>
-                  {/* content */}
                 </div>
-                {/* ============================================================== */}
-                {/* End Page content */}
-                {/* ============================================================== */}
               </div>
-              {/* END wrapper */}
-              {/* Right Sidebar */}
             </div>
           )}
         </>

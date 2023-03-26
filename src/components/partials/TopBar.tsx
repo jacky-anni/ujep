@@ -174,7 +174,7 @@ const TopBar = ({ user }: any) => {
                   className='rounded-circle'
                 />
                 <span className='pro-user-name ms-1'>
-                  {user.person.prenom} {user.person.nom}{" "}
+                  {user.person?.prenom} {user.person?.nom}{" "}
                   <i className='fa fa-chevron-down' />
                 </span>
               </span>
@@ -214,21 +214,23 @@ const TopBar = ({ user }: any) => {
           <div className='logo-box'>
             <span className='logo logo-dark text-center'>
               <span className='logo-sm'>
-                <img src='assets/images/logo-sm.png' alt='' height={22} />
-                {/* <span class="logo-lg-text-light">UBold</span> */}
+                <span style={{ color: "red", fontWeight: "bold" }}>U</span>JEPH
               </span>
               <span className='logo-lg'>
-                <img src='/assets/images/logo-dark.png' alt='' height={20} />
+                <span style={{ color: "red", fontWeight: "bold" }}>U</span>JEPH
                 {/* <span class="logo-lg-text-light">U</span> */}
               </span>
             </span>
             <span className='logo logo-light text-center'>
-              <span className='logo-sm'>
+              <span className='logo-lg-text-light'>
+                <span style={{ color: "red", fontWeight: "bold" }}>U</span>JEPH
+              </span>
+              {/* <span className='logo-sm'>
                 <img src='/assets/images/logo-sm.png' alt='' height={22} />
               </span>
               <span className='logo-lg'>
                 <img src='/assets/images/logo-light.png' alt='' height={20} />
-              </span>
+              </span> */}
             </span>
           </div>
           <ul className='list-unstyled topnav-menu topnav-menu-left m-0'>

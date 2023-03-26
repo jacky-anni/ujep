@@ -2,7 +2,7 @@ import { Avatar } from "antd";
 import React from "react";
 import { UserOutlined } from "@ant-design/icons";
 import { DeleteUser } from "./DeleteUser";
-import { EditUsers } from "./EditUsers";
+import { Link } from "react-router-dom";
 
 export const UserListItem = ({ users }: any) => {
   return (
@@ -25,14 +25,20 @@ export const UserListItem = ({ users }: any) => {
             </small>
           </p>
         </td>
-        <td>{users.person.email}</td>
+        <td>
+          {users.person.email} / {users.username}
+        </td>
         <td>{users.role.role_name}</td>
         <td>
           <a href='javascript: void(0);' className='btn btn-xs btn-light m-1'>
             <i className='fa fa-user' />
           </a>
 
-          <EditUsers user={users} />
+          <Link to={`/dashbord/edit-users/${users.person.uuid}`}>
+            <button className='btn btn-xs btn-info m-1'>
+              <i className='fa fa-edit' />
+            </button>
+          </Link>
 
           <DeleteUser user={users} />
         </td>

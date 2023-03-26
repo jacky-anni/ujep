@@ -5,7 +5,9 @@ const PersonalInformationSupp = ({ student, id }: any) => {
     <>
       {!student.studentinfos && (
         <>
-          <p className='alert alert-danger'>Pas d'infrmations suplementaire </p>
+          <p className='alert alert-danger'>
+            Pas d'informations suplementaire{" "}
+          </p>
           <Link to={`/dashbord/add-students-infos/${id}`}>
             <button className='btn btn-primary bold'>
               <i className='fa fa-plus'></i> Ajouter les informations
@@ -77,7 +79,7 @@ const PersonalInformationSupp = ({ student, id }: any) => {
 
       {student.studentinfos && (
         <>
-          <Link to={`/dashbord/edit-students-infos/${id}`}>
+          <Link to={`/dashbord/add-students-infos/${id}`}>
             <button className='btn btn-primary'>
               {" "}
               <i className='fa fa-edit'></i> <b>Modifier</b>

@@ -1,20 +1,10 @@
 import React, { Suspense, useRef } from "react";
 import Main from "./components/layout/Main";
 import { Routes, Route } from "react-router-dom";
-import AddEmpoyee from "./components/employee/AddEmpoyee";
-import EditEmpoyee from "./components/employee/EditEmpoyee";
-import Employees from "./pages/employees/Employees";
-import Login from "./pages/Login";
 import LoginLayout from "./components/layout/LoginLayout";
-import Home from "./pages/Home";
-
 import { Loader } from "./components/layout/Loader";
-// students list
-
 // import Students from "./pages/students/Students";
-import AddStudentsInfoSupp from "./components/students/AddStudentsInfoSupp";
-import Profile from "./pages/students/Profile";
-import EditStudentsInfoSupp from "./components/students/EditStudentsInfoSupp";
+import AddStudentsInfoSupp from "./pages/students/AddStudentsInfoSupp";
 
 import {
   Faculties,
@@ -23,9 +13,19 @@ import {
   Students,
   CreateStudents,
   EditStudents,
+  CreateEmpoyee,
+  CreateUsers,
+  EditUsers,
+  EmployeeProfile,
+  Home,
+  Profile,
+  Employees,
+  EditEmpoyee,
+  CreateFaculty,
+  EditFaculty,
+  Login,
 } from "./ultils/routes";
-import { CreateFaculty } from "./pages/faculties/CreateFaculty";
-import { EditFaculty } from "./pages/faculties/EditFaculty";
+import { Preloader } from "./components/layout/Preloader";
 
 const App: React.FC = () => {
   return (
@@ -35,13 +35,20 @@ const App: React.FC = () => {
           <Route
             path=''
             element={
-              <Suspense fallback={<h1>ssss</h1>}>
+              <Suspense fallback={<Loader />}>
                 <Home />
               </Suspense>
             }
           />
-          <Route path='/dashbord/employees' element={<Employees />} />
 
+          <Route
+            path='/dashbord/employees'
+            element={
+              <Suspense fallback={<Loader />}>
+                <Employees />
+              </Suspense>
+            }
+          />
           <Route
             path='/dashbord/students'
             element={
@@ -50,7 +57,6 @@ const App: React.FC = () => {
               </Suspense>
             }
           />
-
           <Route
             path='/dashbord/faculties'
             element={
@@ -59,7 +65,6 @@ const App: React.FC = () => {
               </Suspense>
             }
           />
-
           <Route
             path='/dashbord/faculty/:idFaculty'
             element={
@@ -68,7 +73,6 @@ const App: React.FC = () => {
               </Suspense>
             }
           />
-
           <Route
             path='/dashbord/faculty/create'
             element={
@@ -77,7 +81,6 @@ const App: React.FC = () => {
               </Suspense>
             }
           />
-
           <Route
             path='/dashbord/faculty/edit/:idFaculty'
             element={
@@ -86,12 +89,27 @@ const App: React.FC = () => {
               </Suspense>
             }
           />
-
           <Route
             path='/dashbord/users'
             element={
               <Suspense fallback={<Loader />}>
                 <Users />
+              </Suspense>
+            }
+          />
+          <Route
+            path='/dashbord/add-users'
+            element={
+              <Suspense fallback={<Loader />}>
+                <CreateUsers />
+              </Suspense>
+            }
+          />
+          <Route
+            path='/dashbord/edit-users/:user'
+            element={
+              <Suspense fallback={<Loader />}>
+                <EditUsers />
               </Suspense>
             }
           />
@@ -104,15 +122,6 @@ const App: React.FC = () => {
             }
           />
 
-          {/* <Route
-            path='/dashbord/edit-students/:student'
-            element={
-              <Suspense fallback={<Loader />}>
-                <CreateStudents />
-              </Suspense>
-            }
-          /> */}
-
           <Route
             path='/dashbord/add-students-infos/:student'
             element={
@@ -121,25 +130,14 @@ const App: React.FC = () => {
               </Suspense>
             }
           />
-
-          <Route
-            path='/dashbord/edit-students-infos/:student'
-            element={
-              <Suspense fallback={<h1>ssss</h1>}>
-                <EditStudentsInfoSupp />
-              </Suspense>
-            }
-          />
-
           <Route
             path='/dashbord/profile-students/:student'
             element={
-              <Suspense fallback={<h1>ssss</h1>}>
+              <Suspense fallback={<Loader />}>
                 <Profile />
               </Suspense>
             }
           />
-
           <Route
             path='/dashbord/edit-students/:student'
             element={
@@ -148,21 +146,42 @@ const App: React.FC = () => {
               </Suspense>
             }
           />
-
           <Route
             path='/dashbord/add-employee'
             element={
-              <Suspense fallback={<h1>ssss</h1>}>
-                <AddEmpoyee />
+              <Suspense fallback={<Loader />}>
+                <CreateEmpoyee />
+              </Suspense>
+            }
+          />
+          <Route
+            path='/dashbord/employee/profile/:employee'
+            element={
+              <Suspense fallback={<Loader />}>
+                <EmployeeProfile />
               </Suspense>
             }
           />
 
-          <Route path='/dashbord/edit-employee/:id' element={<EditEmpoyee />} />
+          <Route
+            path='/dashbord/edit-employee/:id'
+            element={
+              <Suspense fallback={<Loader />}>
+                <EditEmpoyee />
+              </Suspense>
+            }
+          />
         </Route>
 
         <Route path='/' element={<LoginLayout />}>
-          <Route path='' element={<Login />} />
+          <Route
+            path=''
+            element={
+              <Suspense fallback={<Preloader />}>
+                <Login />
+              </Suspense>
+            }
+          />
         </Route>
       </Routes>
     </>

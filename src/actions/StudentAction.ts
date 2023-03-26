@@ -35,30 +35,30 @@ export const GetStudents = (page: number = 1) => {
 };
 
 // add Students
-export const addStudents = (data: any) => {
+export const AddStudents = (data: any) => {
   return axios.post(`/students`, data).then((res) => res.data);
 };
 
 // add info supp.
-export const addStudentsSupp = (data: StudentsSupp, student: any) => {
+export const AddStudentsSupp = (data: StudentsSupp, student: any) => {
   return axios.post(`/student/infos/${student}`, data).then((res) => res.data);
 };
 
-// edit Students
-export const editStudents = (id: string, data: Students) => {
-  return axios.patch(`/Students/${id}`, data).then((res) => res.data);
+// edit Students information supp.
+export const EditStudentsSupp = (data: StudentsSupp, id: string) => {
+  return axios.patch(`/student/infos/${id}`, data).then((res) => res.data);
 };
 
-// edit Students information supp.
-export const editStudentsSupp = (data: StudentsSupp, id: string) => {
-  return axios.patch(`/Student/infos/${id}`, data).then((res) => res.data);
+// edit Students
+export const EditStudents = (id: string, data: any) => {
+  return axios.patch(`/students/${id}`, data).then((res) => res.data);
 };
 
 // get Students
-export const showStudents = (id: any) => {
+export const ShowStudents = (id: any) => {
   return axios.get(`/students/${id}`).then((res) => res.data);
 };
 
-export const showStudentsSupp = async (id: number) => {
+export const ShowStudentsSupp = async (id: number) => {
   return axios.get(`/student/infos/${id}`).then((res) => res.data);
 };

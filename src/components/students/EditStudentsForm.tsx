@@ -1,6 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import SubmitButtom from "../Ui/form/SubmitButtom";
-import { addStudents, GetStudents } from "../../actions/StudentAction";
+import {
+  AddStudents,
+  EditStudents,
+  GetStudents,
+} from "../../actions/StudentAction";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import CreateAndEditShemaStudents from "../../shemaForms/students/CreateAndEditShema";
@@ -9,7 +13,7 @@ import { StudentKey } from "../../ultils/keys";
 import { Toast } from "../layout/Toast";
 import Alert from "@mui/material/Alert";
 
-export const EditStudentsForm = () => {
+export const EditStudentsForm = ({ student }: any) => {
   const {
     register,
     handleSubmit,
@@ -17,6 +21,23 @@ export const EditStudentsForm = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(CreateAndEditShemaStudents),
+    defaultValues: {
+      nom: student?.person.nom,
+      prenom: student?.person.prenom,
+      sexe: student?.person.sexe,
+      email: student?.person.email,
+      telephone: student?.person.telephone,
+      date_naissance: student?.person.date_naissance,
+      lieu_naissance: student?.lieu_naissance,
+      groupe_sanguin:
+        student?.groupe_sanguin.charAt(0).toUpperCase() +
+        student?.groupe_sanguin.slice(1),
+      statut_matrimonial:
+        student?.statut_matrimonial.charAt(0).toUpperCase() +
+        student?.statut_matrimonial.slice(1),
+      nif: student?.nif,
+      cin: student?.cin,
+    },
   });
 
   const navigate = useNavigate();
@@ -29,22 +50,22 @@ export const EditStudentsForm = () => {
 
   const { isLoading, mutate, error, isError } = useMutation(
     async (values) => {
-      const response = await addStudents(values);
+      const response = await EditStudents(student.person.uuid, values);
       return response;
     },
     {
-      onMutate: (result) => {
+      onMutate: (result: any) => {
         //Update the cache with the new user
-        queryClient.setQueryData([StudentKey], () => [
-          result,
-          ...students.data,
-        ]);
+        return queryClient.setQueryData([StudentKey], () =>
+          students.data.map((student: any) =>
+            student.id === result.id ? result : student
+          )
+        );
       },
       onSuccess: (result) => {
-        Toast("success", "Faculté enregistré avec succès");
+        Toast("success", "Etudiant modifié avec succès");
         queryClient.invalidateQueries([StudentKey]);
-        reset();
-        navigate(`/dashbord/add-students-infos/${result.person.uuid}`);
+        navigate(`/dashbord/profile-students/${result.person.uuid}`);
       },
     }
   );
@@ -62,7 +83,7 @@ export const EditStudentsForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         {isError && (
           <Alert variant='filled' severity='error' className='mb-3'>
-            {err.response.data.message}
+            {/* {err && err.response.data.message} */}
           </Alert>
         )}
         <div className='row'>

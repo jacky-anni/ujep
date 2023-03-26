@@ -13,17 +13,17 @@ export const ShowFaculties = () => {
   const { idFaculty } = useParams();
   const { data, isLoading, isError, error } = useQuery(
     [FacultyKey, idFaculty],
-    () => GetFaculty(idFaculty)
-    // {
-    //   cacheTime: 0,
-    // }
+    () => GetFaculty(idFaculty),
+    {
+      cacheTime: 0,
+    }
   );
 
   const err: any = error;
 
   return (
     <>
-      <AppTitle title={"Les facultes"} img={"faculty"} />
+      <AppTitle title={"Faculté"} img={"faculty"} />
       <div className='bg-white'>
         <div className='row p-1'>
           <div className='col-md-12'>

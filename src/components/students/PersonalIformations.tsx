@@ -7,13 +7,23 @@ const PersonalIformations = ({ student }: any) => {
         <table className='table mb-2'>
           <tbody>
             <tr>
-              <th className='table-light table-info'>Date de naissance</th>
-              <th scope='row'>{student.person.date_naissance}</th>
+              <th className='table-light table-info'>Telephone</th>
+              <th scope='row'>{student.person.telephone}</th>
+            </tr>
+
+            <tr>
+              <th className='table-light table-info'>Email</th>
+              <th scope='row'>{student.person.email}</th>
             </tr>
 
             <tr>
               <th className='table-light table-info'>Lieu de naissance</th>
               <th scope='row'>{student.lieu_naissance}</th>
+            </tr>
+
+            <tr>
+              <th className='table-light table-info'>date de naissance</th>
+              <th scope='row'>{student.person.date_naissance}</th>
             </tr>
 
             <tr>
@@ -28,7 +38,7 @@ const PersonalIformations = ({ student }: any) => {
 
             <tr>
               <th className='table-light table-info'>NIF</th>
-              <th scope='row'>{student.person.nif}</th>
+              <th scope='row'>{student.nif}</th>
             </tr>
           </tbody>
         </table>

@@ -1,6 +1,6 @@
 import EmployeeList from "../../components/employee/EmployeeList";
 import { AppTitle } from "../../components/partials/AppTitle";
-const Employees = () => {
+export const Employees = () => {
   return (
     <>
       <AppTitle title={"Liste des employées"} img={"employees"} />
@@ -8,5 +8,3 @@ const Employees = () => {
     </>
   );
 };
-
-export default Employees;

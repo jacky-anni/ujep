@@ -14,53 +14,21 @@ interface Employee {
 }
 
 // showl all employees
-export const GetEmployees = async (page: number = 1) => {
-  try {
-    const { data } = await axios.get(`/employees?page=${page}`);
-    return data;
-  } catch (error: any) {
-    return {
-      status: 404,
-      message: "Erruer de connexion",
-    };
-  }
+export const GetEmployees = (page: number = 1) => {
+  return axios.get(`/employees?page=${page}`).then((res) => res.data);
 };
 
 // add employee
 export const addEmployee = async (data: Employee) => {
-  try {
-    const res = await axios.post(`/employees`, data);
-    return res.data;
-  } catch (error: any) {
-    return {
-      status: 404,
-      message: "Erruer de connexion",
-    };
-  }
+  return axios.post("employees", data).then((res) => res.data);
 };
 
 // add employee
 export const editEmployee = async (id: string, data: Employee) => {
-  try {
-    const res = await axios.patch(`/employees/${id}`, data);
-    return res.data;
-  } catch (error: any) {
-    return {
-      status: 404,
-      message: error.response.data.message,
-    };
-  }
+  return axios.patch(`/employees/${id}`, data).then((res) => res.data);
 };
 
 // get employee
 export const showEmployee = async (id: any) => {
-  try {
-    const res = await axios.get(`/employees/${id}`);
-    return res.data;
-  } catch (error: any) {
-    return {
-      status: 404,
-      message: "Cet employee n'existe pas",
-    };
-  }
+  return axios.get(`/employees/${id}`).then((res) => res.data);
 };

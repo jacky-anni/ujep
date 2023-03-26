@@ -1,17 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import DeleteEmployee from "./DeleteEmployee";
+import { Avatar } from "antd";
 
 const EmployeeItem = ({ employees }: any) => {
   return (
     <>
       <tr>
         <td className='table-user'>
-          <img
-            src='/assets/images/users/user-4.jpg'
-            alt='table-user'
-            className='me-2 rounded-circle'
-          />
+          <Avatar className='me-2 rounded-circle' />
           <span className='text-body fw-semibold'>
             {employees.person.nom}&nbsp;
             {employees.person.prenom} {employees.person.id}{" "}
@@ -23,33 +20,25 @@ const EmployeeItem = ({ employees }: any) => {
         <td>{employees.salaire}</td>
         <td>
           <div className='dropdown'>
-            <button
-              className='btn btn-primary'
-              type='button'
-              style={{ fontWeight: "bold" }}
-            >
-              Profile
-            </button>
-            {/* <div className='dropdown-menu' aria-labelledby='dropdownMenuButton'>
-              <Link
-                to={`/edit-employee/${employees.person.uuid}`}
-                className='action-icon dropdown-item'
+            <Link to={`/dashbord/employee/profile/${employees.person.uuid}`}>
+              <button
+                className='btn btn-primary'
+                type='button'
+                style={{ fontWeight: "bold" }}
               >
-                <span
-                  style={{
-                    fontSize: "13px",
-                    color: "black",
-                    fontWeight: "bold",
-                  }}
-                >
-                  <i className='fa fa-edit action-buttom' /> Modifier
-                </span>
-              </Link>
-              <div className='dropdown-divider'></div>
-              <span>
-                <DeleteEmployee id={employees.person.uuid} />
-              </span>{" "}
-            </div> */}
+                <i className='fa fa-user'></i>
+              </button>
+            </Link>
+            &nbsp;
+            <Link to={`/dashbord/edit-employee/${employees.person.uuid}`}>
+              <button
+                className='btn btn-info'
+                type='button'
+                style={{ fontWeight: "bold" }}
+              >
+                <i className='fa fa-edit'></i>
+              </button>
+            </Link>
           </div>
         </td>
       </tr>

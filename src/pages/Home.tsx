@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
+import { AppTitle } from "../components/partials/AppTitle";
 
-import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
-import axios from "axios";
-
-const Home = () => {
-  return <div>Home</div>;
+export const Home = () => {
+  return (
+    <>
+      <AppTitle title={"Accueil"} img={"home"} />
+    </>
+  );
 };
-
-export default Home;

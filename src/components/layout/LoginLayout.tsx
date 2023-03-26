@@ -13,18 +13,15 @@ const LoginLayout = () => {
                   <div className='card-body p-4'>
                     <div className='text-center w-75 m-auto'>
                       <div className='auth-logo'>
-                        <a
-                          href='index.html'
-                          className='logo logo-dark text-center'
-                        >
+                        <span className='logo logo-dark text-center'>
                           <span className='logo-lg'>
                             <img
-                              src='assets/images/logo-dark.png'
+                              src='/assets/images/logo.jpeg'
                               alt='sss'
-                              height={22}
+                              height={100}
                             />
                           </span>
-                        </a>
+                        </span>
                         <a
                           href='index.html'
                           className='logo logo-light text-center'
@@ -38,9 +35,17 @@ const LoginLayout = () => {
                           </span>
                         </a>
                       </div>
+                      <h4
+                        style={{
+                          color: "#7d56c2",
+                          fontWeight: "bold",
+                          lineHeight: "22px",
+                        }}
+                      >
+                        Université Jurisalem de Pignon d’Haiti
+                      </h4>
                       <p className='text-muted mb-4 mt-3'>
-                        Enter your email address and password to access admin
-                        panel.
+                        Entrez votre non utilisateur et votre mot de passe
                       </p>
                     </div>
                     <Outlet />

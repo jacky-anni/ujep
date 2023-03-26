@@ -1,32 +1,26 @@
-import React from "react";
-import { Empty } from "antd";
-import {
-  EmployeesFetch,
-  EmployeesFetchErrors,
-} from "../../redux/EmployeeSlice";
+import React, { useEffect, useState } from "react";
+import { Divider, Empty } from "antd";
 import EmployeePagination from "./EmployeePagination";
 import EmployeeSearchBar from "./EmployeeSearchBar";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
-import { useEffect } from "react";
 import EmployeeItem from "./EmployeeItem";
-import { ThreeDots } from "react-loader-spinner";
 import { GetEmployees } from "../../actions/EmployeesAction";
+import { Link } from "react-router-dom";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { EmployeeKey } from "../../ultils/keys";
+import { EmployeeLoading } from "./EmployeeLoading";
+import { useLocation } from "react-router-dom";
+import queryString from "query-string";
 
 const EmployeeList: React.FC = (props) => {
-  const dispatch = useAppDispatch();
-  const employee = useAppSelector((state) => state.employee);
+  const location = useLocation();
+  const { page }: any = queryString.parse(location.search);
+  // initialize query client
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    (async () => {
-      // fetch data
-      const data = await GetEmployees();
-      if (data.status === 404) {
-        dispatch(EmployeesFetchErrors(data.message));
-      } else {
-        dispatch(EmployeesFetch(data));
-      }
-    })();
-  }, [dispatch]);
+  // const page = parseInt(query.page);
+  const { data, isLoading, isError, refetch } = useQuery([EmployeeKey], () =>
+    GetEmployees(page)
+  );
 
   return (
     <>
@@ -39,21 +33,30 @@ const EmployeeList: React.FC = (props) => {
                 <EmployeeSearchBar />
                 <div className='col-sm-6'>
                   <div className=' text-sm-end'>
-                    <button
-                      type='button'
-                      className='btn btn-primary'
-                      data-bs-target='#custom-modal'
-                    >
-                      Ajouter un (e) employé (e)
-                    </button>
+                    <Link to='/dashbord/add-employee'>
+                      <button
+                        type='button'
+                        className='btn btn-primary'
+                        data-bs-target='#custom-modal'
+                      >
+                        Ajouter un (e) employé (e)
+                      </button>
+                    </Link>
                   </div>
                 </div>
                 {/* end col*/}
               </div>
+              <Divider />
+              {data && data.data.length === 0 && (
+                <div className='row'>
+                  {" "}
+                  <Empty />
+                </div>
+              )}
               <div className='table-responsive'>
                 {/* {employee.meta.total} employees */}
                 <table className='table table-centered table-nowrap table-hover mb-0'>
-                  {employee.employees.length > 0 && (
+                  {data && data.data.length > 0 && (
                     <thead>
                       <tr>
                         <th>Nom et Prenom Info</th>
@@ -68,52 +71,30 @@ const EmployeeList: React.FC = (props) => {
 
                   <tbody>
                     {/* if the employees is not empty , thetch data*/}
-                    {!employee.isLoading &&
-                      employee.employees.length > 0 &&
-                      employee.employees.map((employee: any) => (
+                    {!isLoading &&
+                      data.data.length > 0 &&
+                      data.data.map((employee: any) => (
                         <EmployeeItem employees={employee} key={employee.id} />
                       ))}
                   </tbody>
                 </table>
                 {/* loading state */}
-                {employee.isLoading && (
+                {isLoading && (
                   <>
-                    <center>
-                      <ThreeDots
-                        height='90'
-                        width='90'
-                        radius='9'
-                        color='#7d56c2'
-                        ariaLabel='three-dots-loading'
-                        wrapperStyle={{ display: "block" }}
-                        visible={true}
-                      />
-                      <p style={{ marginTop: "-30px" }}>
-                        Chargment en cours...
-                      </p>
-                    </center>
+                    <EmployeeLoading />
                   </>
                 )}
 
-                {/* errors */}
-                {!employee.isLoading && employee.errors != null && (
-                  <p className='alert alert-danger'>Une erreur </p>
-                )}
-
                 {/* if the employees is empty */}
-                {!employee.isLoading &&
-                  employee.errors === null &&
-                  employee.employees.length === 0 && (
-                    <p className='mt-3 mb-0'>
-                      <Empty description={"Pas de données pour l'instant"} />
-                    </p>
-                  )}
+                {isError && (
+                  <p className='mt-3 mb-0'>
+                    <Empty description={"Pas de données pour l'instant"} />
+                  </p>
+                )}
               </div>
-              {employee.employees.length > 0 && (
-                <EmployeePagination
-                  meta={employee.meta}
-                  total={employee.meta.total}
-                />
+
+              {data && data.data.length > 0 && (
+                <EmployeePagination meta={data.meta} total={data.meta.total} />
               )}
             </div>{" "}
             {/* end card-body*/}

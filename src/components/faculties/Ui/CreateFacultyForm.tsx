@@ -9,6 +9,7 @@ import { Alert } from "@mui/material";
 import { Toast } from "../../layout/Toast";
 import { FacultyKey } from "./../../../ultils/keys";
 import { useNavigate } from "react-router-dom";
+import SignupSchema from "../../../shemaForms/account/SignupSchema";
 
 export const CreateFacultyForm = () => {
   const {
@@ -17,7 +18,7 @@ export const CreateFacultyForm = () => {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(validationSchema),
+    resolver: yupResolver(SignupSchema),
   });
   // initialize query client
   const queryClient = useQueryClient();

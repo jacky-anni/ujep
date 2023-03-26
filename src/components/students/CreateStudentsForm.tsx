@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import SubmitButtom from "../Ui/form/SubmitButtom";
 import { ToastContainer, toast } from "react-toastify";
-import { addStudents, GetStudents } from "../../actions/StudentAction";
+import { AddStudents, GetStudents } from "../../actions/StudentAction";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import CreateAndEditShemaStudents from "../../shemaForms/students/CreateAndEditShema";
@@ -30,7 +30,7 @@ export const CreateStudentsForm = () => {
 
   const { data, isLoading, mutate, error, isError, isSuccess } = useMutation(
     async (values) => {
-      const response = await addStudents(values);
+      const response = await AddStudents(values);
       return response;
     },
     {

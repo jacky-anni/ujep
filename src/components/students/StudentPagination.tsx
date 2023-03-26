@@ -1,21 +1,12 @@
 import type { PaginationProps } from "antd";
 import { Pagination } from "antd";
 import { useAppDispatch } from "../../redux/hooks/hooks";
-import { setPagination, clearLoading } from "../../redux/StudentsSlice";
 import { GetStudents } from "../../actions/StudentAction";
 
 const StudentPagination = (props: any) => {
   const dispatch = useAppDispatch();
 
-  const onChange: PaginationProps["onChange"] = async (pageNumber) => {
-    // st loading for fething employee information
-    dispatch(clearLoading());
-    // fetch data
-    const data = await GetStudents(pageNumber);
-
-    // dispatch the emplyees
-    dispatch(setPagination(data));
-  };
+  const onChange: PaginationProps["onChange"] = async (pageNumber) => {};
 
   const itemRender: PaginationProps["itemRender"] = (
     _,

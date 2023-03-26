@@ -6,6 +6,19 @@ export const Users = React.lazy(() =>
     default: Users,
   }))
 );
+
+export const CreateUsers = React.lazy(() =>
+  import("../pages/users/CreateUsers").then(({ CreateUsers }) => ({
+    default: CreateUsers,
+  }))
+);
+
+export const EditUsers = React.lazy(() =>
+  import("../pages/users/EditUsers").then(({ EditUsers }) => ({
+    default: EditUsers,
+  }))
+);
+
 //============================================================================================
 
 // students
@@ -23,9 +36,25 @@ export const CreateStudents = React.lazy(() =>
 );
 
 // edit students
+export const AddStudentsInfoSupp = React.lazy(() =>
+  import("../pages/students/AddStudentsInfoSupp").then(
+    ({ AddStudentsInfoSupp }) => ({
+      default: AddStudentsInfoSupp,
+    })
+  )
+);
+
+// add supp. information
 export const EditStudents = React.lazy(() =>
   import("../pages/students/EditStudents").then(({ EditStudents }) => ({
     default: EditStudents,
+  }))
+);
+
+// profile
+export const Profile = React.lazy(() =>
+  import("../pages/students/Profile").then(({ Profile }) => ({
+    default: Profile,
   }))
 );
 //================================================================================================
@@ -37,7 +66,7 @@ export const Faculties = React.lazy(() =>
   }))
 );
 
-export const CreateFaculte = React.lazy(() =>
+export const CreateFaculty = React.lazy(() =>
   import("../pages/faculties/CreateFaculty").then(({ CreateFaculty }) => ({
     default: CreateFaculty,
   }))
@@ -55,3 +84,44 @@ export const ShowFaculties = React.lazy(() =>
   }))
 );
 //============================================================================================
+
+// employeee
+export const CreateEmpoyee = React.lazy(() =>
+  import("../pages/employees/CreateEmpoyee").then(({ CreateEmpoyee }) => ({
+    default: CreateEmpoyee,
+  }))
+);
+
+// employeee
+export const EditEmpoyee = React.lazy(() =>
+  import("../pages/employees/EditEmpoyee").then(({ EditEmpoyee }) => ({
+    default: EditEmpoyee,
+  }))
+);
+
+export const EmployeeProfile = React.lazy(() =>
+  import("../pages/employees/EmployeeProfile").then(({ EmployeeProfile }) => ({
+    default: EmployeeProfile,
+  }))
+);
+
+export const Employees = React.lazy(() =>
+  import("../pages/employees/Employees").then(({ Employees }) => ({
+    default: Employees,
+  }))
+);
+
+//==============================================================================================
+// HOME
+export const Home = React.lazy(() =>
+  import("../pages/Home").then(({ Home }) => ({
+    default: Home,
+  }))
+);
+//==============================================================================================
+// Login
+export const Login = React.lazy(() =>
+  import("../pages/Login").then(({ Login }) => ({
+    default: Login,
+  }))
+);

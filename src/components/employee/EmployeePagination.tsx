@@ -1,20 +1,33 @@
 import type { PaginationProps } from "antd";
 import { Pagination } from "antd";
-import { useAppDispatch } from "../../redux/hooks/hooks";
-import { setPagination, clearLoading } from "../../redux/EmployeeSlice";
 import { GetEmployees } from "../../actions/EmployeesAction";
+import { EmployeeKey } from "../../ultils/keys";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+import { Box, LinearProgress } from "@mui/material";
 
 const EmployeePagination = (props: any) => {
-  const dispatch = useAppDispatch();
+  // initialize loading
+  const antIcon = (
+    <LoadingOutlined style={{ fontSize: 20, color: "#7d56c2" }} spin />
+  );
+  // initialize query client
+  const queryClient = useQueryClient();
+
+  const { isLoading, mutate, isError, error } = useMutation(
+    async (values: number) => {
+      return await GetEmployees(values);
+    },
+    {
+      onSuccess: (result, variables, context) => {
+        queryClient.setQueryData([EmployeeKey], () => result);
+      },
+    }
+  );
 
   const onChange: PaginationProps["onChange"] = async (pageNumber) => {
-    // st loading for fething employee information
-    dispatch(clearLoading());
-    // fetch data
-    const data = await GetEmployees(pageNumber);
-
-    // dispatch the emplyees
-    dispatch(setPagination(data));
+    mutate(pageNumber);
   };
 
   const itemRender: PaginationProps["itemRender"] = (
@@ -23,7 +36,16 @@ const EmployeePagination = (props: any) => {
     originalElement
   ) => {
     if (type === "prev") {
-      return <span style={{ cursor: "pointer" }}>Précédent</span>;
+      return (
+        <>
+          {isLoading && (
+            <>
+              <Spin indicator={antIcon} /> &nbsp;
+            </>
+          )}
+          <span style={{ cursor: "pointer" }}>Précédent</span>
+        </>
+      );
     }
     if (type === "next") {
       return <span style={{ cursor: "pointer" }}>Suivante</span>;
@@ -36,6 +58,12 @@ const EmployeePagination = (props: any) => {
         Page {props.meta.CurrentPage} sur {props.meta.lastPaginate} dans{" "}
         {props.total} entrées{" "}
       </p>
+      {isLoading && (
+        <Box sx={{ width: "100%" }}>
+          <LinearProgress color='secondary' />
+        </Box>
+      )}
+
       <p className='justify-content-end mb-0 mt-2' style={{ float: "right" }}>
         <Pagination
           defaultCurrent={1}
@@ -44,8 +72,15 @@ const EmployeePagination = (props: any) => {
           pageSize={15}
           showSizeChanger={false}
           itemRender={itemRender}
+          disabled={isLoading}
         />
       </p>
+
+      {isError && (
+        <p className='alert alert-danger p-2 bold'>
+          Une erreur lors de l'actualisation des données
+        </p>
+      )}
     </>
   );
 };
