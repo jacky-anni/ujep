@@ -1,13 +1,13 @@
 import type { PaginationProps } from "antd";
 import { Pagination } from "antd";
-import { EmployeeKey, StudentKey } from "../../ultils/keys";
+import { UserKey } from "../../ultils/keys";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Box, LinearProgress } from "@mui/material";
-import { GetStudents } from "../../actions/StudentAction";
+import { getUsers } from "../../actions/UserAction";
 
-const StudentPagination = (props: any) => {
+export const UserPagination = (props: any) => {
   // initialize loading
   const antIcon = (
     <LoadingOutlined style={{ fontSize: 20, color: "#7d56c2" }} spin />
@@ -15,13 +15,13 @@ const StudentPagination = (props: any) => {
   // initialize query client
   const queryClient = useQueryClient();
 
-  const { isLoading, mutate, isError, error } = useMutation(
+  const { isLoading, mutate, isError } = useMutation(
     async (values: number) => {
-      return await GetStudents(values);
+      return await getUsers(values);
     },
     {
-      onSuccess: (result, variables, context) => {
-        queryClient.setQueryData([StudentKey], () => result);
+      onSuccess: (result) => {
+        queryClient.setQueryData([UserKey], () => result);
       },
     }
   );
@@ -84,6 +84,3 @@ const StudentPagination = (props: any) => {
     </>
   );
 };
-
-export default StudentPagination;
-//

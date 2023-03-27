@@ -1,6 +1,3 @@
-import { Divider, List, Typography } from "antd";
-import React from "react";
-import { MenuAvatar } from "../Ui/MenuAvatar";
 import { ButtonProfile } from "./Ui/ButtonProfile";
 
 export const OptionsNavStudent = () => {

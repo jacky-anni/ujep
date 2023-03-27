@@ -13,7 +13,7 @@ export const UserListItem = ({ users }: any) => {
         </td>
         <td>
           <h5 className='m-0 fw-normal font-13'>
-            {users.person.prenom} {users.person.nom}
+            {users.person.prenom} {users.person.nom} {users.person.id}
           </h5>
           <p className='mb-0 text-muted'>
             <small

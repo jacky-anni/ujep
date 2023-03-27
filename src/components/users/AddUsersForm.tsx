@@ -1,6 +1,5 @@
 import SubmitButtom from "../Ui/form/SubmitButtom";
 import { addUser } from "../../actions/UserAction";
-import { Alert } from "@mui/material";
 import { Toast } from "../layout/Toast";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -24,7 +23,7 @@ export const CreateUsersForm = () => {
   // initialize query client
   const queryClient = useQueryClient();
   // create mutation
-  const { isLoading, mutate, error, isError, isSuccess } = useMutation(
+  const { isLoading, mutate } = useMutation(
     async (values) => {
       await addUser(values);
     },

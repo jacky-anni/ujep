@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from "react";
 import SubmitButtom from "../../Ui/form/SubmitButtom";
 import { useForm } from "react-hook-form";
-import { Divider } from "antd";
-import validationSchema from "../../../shemaForms/ShemaFaculty";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  CreateFaculty,
-  GetFaculties,
-  UpdateFaculty,
-} from "../../../actions/FacultyActions";
+import { GetFaculties, UpdateFaculty } from "../../../actions/FacultyActions";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Alert } from "@mui/material";
 import { Toast } from "../../layout/Toast";
 import { FacultyKey } from "../../../ultils/keys";
 import { useNavigate } from "react-router-dom";
+import ShemaFaculty from "../../../shemaForms/faculty/ShemaFaculty";
 
 export const EditFacultyForm = ({ faculty }: any) => {
   const {
@@ -22,7 +16,7 @@ export const EditFacultyForm = ({ faculty }: any) => {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(validationSchema),
+    resolver: yupResolver(ShemaFaculty),
     defaultValues: {
       nom_faculte: faculty?.nom_faculte,
       degree:
@@ -151,13 +145,6 @@ export const EditFacultyForm = ({ faculty }: any) => {
           </div>
         </div>
         <SubmitButtom message={"Soumettre"} loading={isLoading} />
-        <button
-          onClick={() => reset()}
-          className='btn btn-danger'
-          style={{ fontWeight: "bold", marginLeft: "6px" }}
-        >
-          Annuler
-        </button>
       </form>
     </>
   );

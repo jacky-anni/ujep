@@ -13,8 +13,12 @@ export const HomeSlice = createSlice({
   name: "home",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
-  reducers: {},
+  reducers: {
+    loadPage: (state) => {
+      state.isLoading = true;
+    },
+  },
 });
 
-export const {} = HomeSlice.actions;
+export const { loadPage } = HomeSlice.actions;
 export default HomeSlice.reducer;

@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
 import SubmitButtom from "../../Ui/form/SubmitButtom";
 import { useForm } from "react-hook-form";
-import validationSchema from "../../../shemaForms/ShemaFaculty";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CreateFaculty } from "../../../actions/FacultyActions";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -9,7 +7,7 @@ import { Alert } from "@mui/material";
 import { Toast } from "../../layout/Toast";
 import { FacultyKey } from "./../../../ultils/keys";
 import { useNavigate } from "react-router-dom";
-import SignupSchema from "../../../shemaForms/account/SignupSchema";
+import ShemaFaculty from "../../../shemaForms/faculty/ShemaFaculty";
 
 export const CreateFacultyForm = () => {
   const {
@@ -18,7 +16,7 @@ export const CreateFacultyForm = () => {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(SignupSchema),
+    resolver: yupResolver(ShemaFaculty),
   });
   // initialize query client
   const queryClient = useQueryClient();

@@ -1,14 +1,9 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import Alert from "@mui/material/Alert";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import {
-  addEmployee,
-  editEmployee,
-  GetEmployees,
-} from "../../actions/EmployeesAction";
+import { editEmployee, GetEmployees } from "../../actions/EmployeesAction";
 import AddEditEmplyeesSchema from "../../shemaForms/employees/AddEditEmplyeesSchema";
 import { EmployeeKey } from "../../ultils/keys";
 import { Toast } from "../layout/Toast";
@@ -46,7 +41,7 @@ export const EditEmployeeForm = ({ employee }: any) => {
   // create mutation
   const { isLoading, mutate, error, isError, isSuccess } = useMutation(
     async (values: any) => {
-      await editEmployee(employee.person.uuid, values);
+      return await editEmployee(employee.person.uuid, values);
     },
     {
       onMutate: (result) => {
@@ -62,15 +57,13 @@ export const EditEmployeeForm = ({ employee }: any) => {
       onSuccess: (result, variables, context) => {
         Toast("success", "Faculté enregistré avec succès");
         queryClient.invalidateQueries([EmployeeKey]);
-        //navigate(`/dashbord/faculty/${faculty.id}`);
+        navigate(`/dashbord/employee/profile/${result.person.uuid}`);
       },
     }
   );
 
   // define error
   const err: any = error;
-
-  console.log(err);
 
   // submit form
   const onSubmit = (data: any) => {
@@ -82,7 +75,7 @@ export const EditEmployeeForm = ({ employee }: any) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         {isError && (
           <Alert variant='filled' severity='error' className='mb-3'>
-            {(err && err.response.data.message) ||
+            {(err && err.response?.data?.message) ||
               "Probleme avec la modification"}
           </Alert>
         )}

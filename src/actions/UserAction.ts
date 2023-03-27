@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export const getUsers = () => {
-  return axios.get("users").then((res) => res.data);
+export const getUsers = (page: number = 1) => {
+  return axios.get(`/users?page=${page}`).then((res) => res.data);
 };
 
 export const showUser = (id: string) => {

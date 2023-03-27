@@ -1,8 +1,10 @@
 import { Box, LinearProgress } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { logout } from "../../actions/UserAction";
+import { Avatar } from "antd";
+import { PictureOutlined } from "@ant-design/icons";
 
 const TopBar = ({ user }: any) => {
   const navigate = useNavigate();
@@ -168,11 +170,7 @@ const TopBar = ({ user }: any) => {
                 aria-haspopup='false'
                 aria-expanded='false'
               >
-                <img
-                  src='/assets/images/users/user-1.jpg'
-                  alt=''
-                  className='rounded-circle'
-                />
+                <Avatar src='' icon={<PictureOutlined />} />
                 <span className='pro-user-name ms-1'>
                   {user.person?.prenom} {user.person?.nom}{" "}
                   <i className='fa fa-chevron-down' />
@@ -233,42 +231,6 @@ const TopBar = ({ user }: any) => {
               </span> */}
             </span>
           </div>
-          <ul className='list-unstyled topnav-menu topnav-menu-left m-0'>
-            <li>
-              {/* Mobile menu toggle (Horizontal Layout)*/}
-              <span
-                className='navbar-toggle nav-link'
-                data-bs-toggle='collapse'
-                data-bs-target='#topnav-menu-content'
-              >
-                <div className='lines'>
-                  <span />
-                  <span />
-                  <span />
-                </div>
-              </span>
-              {/* End mobile menu toggle*/}
-            </li>
-            <li className='dropdown d-none d-xl-block'>
-              <span
-                className='nav-link dropdown-toggle waves-effect waves-light'
-                data-bs-toggle='dropdown'
-                role='button'
-                aria-haspopup='false'
-                aria-expanded='false'
-              >
-                Ajouter un nouveau &nbsp;
-                <i className='fa fa-chevron-down' />
-              </span>
-              <div className='dropdown-menu'>
-                {/* item*/}
-                <Link to='/add-employee' className='dropdown-item'>
-                  <i className='fa fa-briefcase me-1' />
-                  <span>Employé</span>
-                </Link>
-              </div>
-            </li>
-          </ul>
 
           <div className='clearfix' />
           {/* <div>

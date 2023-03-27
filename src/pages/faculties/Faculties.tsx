@@ -1,4 +1,3 @@
-import React from "react";
 import { FacultyList } from "../../components/faculties/FacultyList";
 import { AppTitle } from "../../components/partials/AppTitle";
 

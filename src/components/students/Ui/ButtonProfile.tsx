@@ -1,4 +1,3 @@
-import React from "react";
 import { MenuAvatar } from "../../Ui/MenuAvatar";
 
 export const ButtonProfile = ({

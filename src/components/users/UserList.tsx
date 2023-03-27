@@ -5,6 +5,7 @@ import { getUsers } from "../../actions/UserAction";
 import { Header } from "./Header";
 import { UserListItem } from "./UserListItem";
 import { UsersLoading } from "./UsersLoading";
+import { UserPagination } from "./UserPagination";
 
 export const UserList = () => {
   const { data: users, isLoading } = useQuery([UserKey], () => getUsers());
@@ -44,6 +45,10 @@ export const UserList = () => {
           <p className='mt-3 mb-0'>
             <Empty description={"Pas de données pour l'instant"} />
           </p>
+        )}
+
+        {users && users.data.length > 0 && (
+          <UserPagination meta={users.meta} total={users.meta.total} />
         )}
       </div>
     </>

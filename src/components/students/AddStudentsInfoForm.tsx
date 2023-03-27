@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React from "react";
+import Alert from "@mui/material/Alert";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AddStudentsSupp, EditStudentsSupp } from "../../actions/StudentAction";
@@ -15,7 +15,6 @@ export const AddStudentsInfoForm = ({ student }: any) => {
   const {
     register,
     handleSubmit,
-    reset,
     watch,
     formState: { errors },
   } = useForm({
@@ -92,6 +91,11 @@ export const AddStudentsInfoForm = ({ student }: any) => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
+        {isError && (
+          <Alert variant='filled' severity='error' className='mb-3'>
+            {err.response?.data?.message}
+          </Alert>
+        )}
         <div className='row'>
           <div className='col-md-6 position-relative mb-2'>
             <label>Occupation</label>

@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { Bars } from "react-loader-spinner";
 import { Link, useParams } from "react-router-dom";
 import { AppTitle } from "../../components/partials/AppTitle";
 import BannerStudents from "../../components/students/BannerStudents";

@@ -1,10 +1,6 @@
 import { Empty } from "antd";
-import React, { useEffect } from "react";
-import { ThreeDots } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import { GetStudents } from "../../actions/StudentAction";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
-import { studentsFetch } from "../../redux/StudentsSlice";
 import StudentSearchBar from "./StudentSearchBar";
 import StudentItem from "./StudentItem";
 import StudentPagination from "./StudentPagination";

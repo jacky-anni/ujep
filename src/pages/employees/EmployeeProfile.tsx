@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
 import { useParams } from "react-router-dom";
 import { showEmployee } from "../../actions/EmployeesAction";
 import { BannerEmployee } from "../../components/employee/BannerEmployee";

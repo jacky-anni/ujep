@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
 import { Divider, Empty } from "antd";
 import EmployeePagination from "./EmployeePagination";
 import EmployeeSearchBar from "./EmployeeSearchBar";
 import EmployeeItem from "./EmployeeItem";
 import { GetEmployees } from "../../actions/EmployeesAction";
 import { Link } from "react-router-dom";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { EmployeeKey } from "../../ultils/keys";
 import { EmployeeLoading } from "./EmployeeLoading";
 import { useLocation } from "react-router-dom";

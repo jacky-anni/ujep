@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
 import { useParams } from "react-router-dom";
 import { ShowStudents } from "../../actions/StudentAction";
 import { NotFoundTemplate } from "../../components/layout/NotFoundTemplate";

@@ -1,6 +1,4 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import DeleteEmployee from "./DeleteEmployee";
 import { Avatar } from "antd";
 
 const EmployeeItem = ({ employees }: any) => {
@@ -11,7 +9,7 @@ const EmployeeItem = ({ employees }: any) => {
           <Avatar className='me-2 rounded-circle' />
           <span className='text-body fw-semibold'>
             {employees.person.nom}&nbsp;
-            {employees.person.prenom} {employees.person.id}{" "}
+            {employees.person.prenom}
           </span>
         </td>
         <td>{employees.fonction}</td>

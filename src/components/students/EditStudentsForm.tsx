@@ -1,10 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import SubmitButtom from "../Ui/form/SubmitButtom";
-import {
-  AddStudents,
-  EditStudents,
-  GetStudents,
-} from "../../actions/StudentAction";
+import { EditStudents, GetStudents } from "../../actions/StudentAction";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import CreateAndEditShemaStudents from "../../shemaForms/students/CreateAndEditShema";

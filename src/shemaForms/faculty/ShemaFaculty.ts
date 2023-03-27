@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const validationSchema = yup.object().shape({
+const ShemaFaculty = yup.object().shape({
   nom_faculte: yup.string().required("Ce champ est obligatoire !"),
   degree: yup.string().required("Ce champ est obligatoire !"),
   duree: yup
@@ -27,4 +27,4 @@ const validationSchema = yup.object().shape({
     .max(250, "Valeur maximale 100"),
 });
 
-export default validationSchema;
+export default ShemaFaculty;
