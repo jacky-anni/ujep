@@ -170,7 +170,7 @@ const TopBar = ({ user }: any) => {
                 aria-haspopup='false'
                 aria-expanded='false'
               >
-                <Avatar src='' icon={<PictureOutlined />} />
+                <Avatar icon={<PictureOutlined />} />
                 <span className='pro-user-name ms-1'>
                   {user.person?.prenom} {user.person?.nom}{" "}
                   <i className='fa fa-chevron-down' />

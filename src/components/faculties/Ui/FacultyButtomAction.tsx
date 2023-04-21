@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { DeleteFaculty } from "./DeleteFaculty";
 
 export const FacultyButtomAction = ({ faculty }: any) => {
   return (
@@ -14,15 +13,14 @@ export const FacultyButtomAction = ({ faculty }: any) => {
           <i className='fa fa-grip-vertical m-0 text-muted h3' />
         </span>
         <div className='dropdown-menu dropdown-menu-end'>
-          <Link
-            className='dropdown-item'
-            to={`/dashbord/faculty/edit/${faculty.id}`}
-          >
-            <i className='fa fa-edit'></i> Modifier
+          <Link to={`/dashbord/faculty/${faculty.id}`}>
+            <span
+              className='dropdown-item'
+              style={{ cursor: "pointer", fontWeight: "bold" }}
+            >
+              <i className='fa fa-edit'></i> Modifier
+            </span>
           </Link>
-
-          {/* <EditFaculty faculty={faculty} /> */}
-          <DeleteFaculty faculty={faculty} />
         </div>
       </div>
     </>

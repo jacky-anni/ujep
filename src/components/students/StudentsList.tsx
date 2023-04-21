@@ -1,7 +1,7 @@
 import { Empty } from "antd";
 import { Link } from "react-router-dom";
 import { GetStudents } from "../../actions/StudentAction";
-import StudentSearchBar from "./StudentSearchBar";
+import { StudentSearchBar } from "./StudentSearchBar";
 import StudentItem from "./StudentItem";
 import StudentPagination from "./StudentPagination";
 import { useQuery } from "@tanstack/react-query";
@@ -76,7 +76,7 @@ const StudentsList = () => {
               {students && students.data.length > 0 && (
                 <StudentPagination
                   meta={students.meta}
-                  total={students.meta.total}
+                  total={students.meta?.total}
                 />
               )}
             </div>

@@ -47,7 +47,7 @@ export const FacultyList = () => {
           <>
             {data &&
               data.map((faculty: any) => (
-                <div className='col-md-4'>
+                <div className='col-md-4' key={faculty.id}>
                   <div className='card project-box'>
                     <div className='card-body'>
                       <FacultyButtomAction faculty={faculty} />

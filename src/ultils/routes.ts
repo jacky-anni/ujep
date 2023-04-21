@@ -125,3 +125,25 @@ export const Login = React.lazy(() =>
     default: Login,
   }))
 );
+
+//==============================================================================================
+// courses
+export const Courses = React.lazy(() =>
+  import("../pages/courses/Courses").then(({ Courses }) => ({
+    default: Courses,
+  }))
+);
+
+// show course
+export const ShowCourse = React.lazy(() =>
+  import("../pages/courses/ShowCourse").then(({ ShowCourse }) => ({
+    default: ShowCourse,
+  }))
+);
+
+// teachers
+export const Teachers = React.lazy(() =>
+  import("../pages/teachers/Teachers").then(({ Teachers }) => ({
+    default: Teachers,
+  }))
+);

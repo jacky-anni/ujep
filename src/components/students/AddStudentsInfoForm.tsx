@@ -53,7 +53,7 @@ export const AddStudentsInfoForm = ({ student }: any) => {
   const { isLoading, mutate, error, isError } = useMutation(
     async (values) => {
       if (student.studentinfos) {
-        const response = await EditStudentsSupp(values, student.id);
+        return await EditStudentsSupp(values, student.id);
       } else {
         return await AddStudentsSupp(values, student.id);
       }
@@ -64,7 +64,7 @@ export const AddStudentsInfoForm = ({ student }: any) => {
       },
       onSuccess: (result) => {
         Toast("success", "Informations modifié avec succès");
-        navigate(`/dashbord/profile-students/${result.person.uuid}`);
+        navigate(-1);
       },
     }
   );
@@ -88,12 +88,15 @@ export const AddStudentsInfoForm = ({ student }: any) => {
   };
 
   const err: any = error;
+
+  console.log(err);
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         {isError && (
           <Alert variant='filled' severity='error' className='mb-3'>
-            {err.response?.data?.message}
+            {err.response.data?.message || "Erreur lors de l'enregsitrement"}
           </Alert>
         )}
         <div className='row'>

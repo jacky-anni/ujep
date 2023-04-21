@@ -61,13 +61,16 @@ export const EditStudentsForm = ({ student }: any) => {
       onSuccess: (result) => {
         Toast("success", "Etudiant modifié avec succès");
         queryClient.invalidateQueries([StudentKey]);
-        navigate(`/dashbord/profile-students/${result.person.uuid}`);
+
+        navigate(-1);
       },
     }
   );
 
   // define error
   const err: any = error;
+
+  console.log(err);
 
   // on submit function
   const onSubmit = (data: any) => {
@@ -79,7 +82,7 @@ export const EditStudentsForm = ({ student }: any) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         {isError && (
           <Alert variant='filled' severity='error' className='mb-3'>
-            {/* {err && err.response.data.message} */}
+            {err && err.response.data?.message}
           </Alert>
         )}
         <div className='row'>

@@ -42,6 +42,16 @@ const LeftSideBar = ({ user }: any) => {
                       <span className='bold'> Employées </span>
                     </Link>
                   </li>
+
+                  <li>
+                    <Link to='/dashbord/teachers'>
+                      <MenuAvatar img={"teachers"} />
+                      {/* <span className='badge bg-info rounded-pill float-end'>
+                        4
+                      </span> */}
+                      <span className='bold'> Professeurs </span>
+                    </Link>
+                  </li>
                 </>
               )}
 
@@ -56,15 +66,27 @@ const LeftSideBar = ({ user }: any) => {
               </li>
 
               {user && user.role.role_name === "ADMIN" && (
-                <li>
-                  <Link to='/dashbord/faculties'>
-                    <MenuAvatar img={"faculty"} />
-                    {/* <span className='badge bg-info rounded-pill float-end'>
+                <>
+                  <li>
+                    <Link to='/dashbord/faculties'>
+                      <MenuAvatar img={"faculty"} />
+                      {/* <span className='badge bg-info rounded-pill float-end'>
                     4
                   </span> */}
-                    <span className='bold'> Les Facultés </span>
-                  </Link>
-                </li>
+                      <span className='bold'> Les Facultés </span>
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link to='/dashbord/courses'>
+                      <MenuAvatar img={"course"} />
+                      {/* <span className='badge bg-info rounded-pill float-end'>
+                    4
+                  </span> */}
+                      <span className='bold'> Les cours </span>
+                    </Link>
+                  </li>
+                </>
               )}
             </ul>
           </div>

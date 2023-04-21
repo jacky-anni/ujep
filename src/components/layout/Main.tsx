@@ -8,6 +8,8 @@ import { useQuery } from "@tanstack/react-query";
 import { UserKey } from "../../ultils/keys";
 import NetWorkConnection from "./NetWorkConnection";
 import { Preloader } from "./Preloader";
+import { ErrorBoundary } from "react-error-boundary";
+import { errorBoundary } from "../../ultils/errorBoundary";
 const Main = () => {
   const navigate = useNavigate();
 
@@ -51,9 +53,16 @@ const Main = () => {
                       <div className='row'>
                         <div className='col-12'>
                           <div className='page-title-box'>
+                            <ErrorBoundary
+                              fallbackRender={errorBoundary}
+                              onReset={() => {
+                                // Reset the state of your app so the error doesn't happen again
+                              }}
+                            >
+                              <Outlet />
+                              <Footer />
+                            </ErrorBoundary>
                             {/* {children} */}
-                            <Outlet />
-                            <Footer />
                           </div>
                         </div>
                       </div>
