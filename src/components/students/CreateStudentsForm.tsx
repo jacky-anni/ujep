@@ -41,7 +41,7 @@ export const CreateStudentsForm = () => {
         ]);
       },
       onSuccess: (result) => {
-        Toast("success", "Faculté enregistré avec succès");
+        Toast("success", "Edudiant enregistré avec succès");
         queryClient.invalidateQueries([StudentKey]);
         reset();
         navigate(`/dashbord/add-students-infos/${result.person.uuid}`);
@@ -51,6 +51,8 @@ export const CreateStudentsForm = () => {
 
   // define error
   const err: any = error;
+
+  console.log(err);
 
   // on submit function
   const onSubmit = (data: any) => {
@@ -62,7 +64,7 @@ export const CreateStudentsForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         {isError && (
           <Alert variant='filled' severity='error' className='mb-3'>
-            {err.response.data.message}
+            {err.response.data?.message}
           </Alert>
         )}
         <div className='row'>

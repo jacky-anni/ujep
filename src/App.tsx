@@ -24,6 +24,8 @@ import {
   CreateFaculty,
   EditFaculty,
   Login,
+  Courses,
+  Teachers,
 } from "./ultils/routes";
 import { Preloader } from "./components/layout/Preloader";
 
@@ -168,6 +170,24 @@ const App: React.FC = () => {
             element={
               <Suspense fallback={<Loader />}>
                 <EditEmpoyee />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path='/dashbord/courses'
+            element={
+              <Suspense fallback={<Loader />}>
+                <Courses />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path='/dashbord/teachers'
+            element={
+              <Suspense fallback={<Loader />}>
+                <Teachers />
               </Suspense>
             }
           />

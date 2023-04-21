@@ -60,5 +60,10 @@ export const ShowStudents = (id: any) => {
 };
 
 export const ShowStudentsSupp = async (id: number) => {
-  return axios.get(`/student/infos/${id}`).then((res) => res.data);
+  return axios.get(`/students/infos/${id}`).then((res) => res.data);
+};
+
+//search
+export const seachStudent = (value: string) => {
+  return axios.get(`students/search/${value}`).then((res) => res.data);
 };

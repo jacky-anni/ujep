@@ -40,7 +40,7 @@ export const UserListItem = ({ users }: any) => {
             </button>
           </Link>
 
-          <DeleteUser user={users} />
+          {/* <DeleteUser user={users} /> */}
         </td>
       </tr>
     </>

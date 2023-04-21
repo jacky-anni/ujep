@@ -42,7 +42,7 @@ const LoginLayout = () => {
                           lineHeight: "22px",
                         }}
                       >
-                        Université Jurisalem de Pignon d’Haiti
+                        Université Jérusalem de Pignon Haïti
                       </h4>
                       <p className='text-muted mb-4 mt-3'>
                         Entrez votre non utilisateur et votre mot de passe

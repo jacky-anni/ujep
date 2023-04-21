@@ -13,7 +13,6 @@ export const EditEmployeeForm = ({ employee }: any) => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(AddEditEmplyeesSchema),
@@ -39,7 +38,7 @@ export const EditEmployeeForm = ({ employee }: any) => {
   const { data } = useQuery([EmployeeKey], () => GetEmployees());
 
   // create mutation
-  const { isLoading, mutate, error, isError, isSuccess } = useMutation(
+  const { isLoading, mutate, error, isError } = useMutation(
     async (values: any) => {
       return await editEmployee(employee.person.uuid, values);
     },
@@ -50,6 +49,7 @@ export const EditEmployeeForm = ({ employee }: any) => {
           () =>
             data &&
             data.data.map((employee: any) =>
+              // eslint-disable-next-line no-self-compare
               employee.id === employee.id ? result : employee
             )
         );

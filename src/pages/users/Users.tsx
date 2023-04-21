@@ -1,7 +1,6 @@
 import React from "react";
 import { UserList } from "./../../components/users/UserList";
 import { AppTitle } from "./../../components/partials/AppTitle";
-import { Link } from "react-router-dom";
 
 export const Users = () => {
   return (
