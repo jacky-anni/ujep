@@ -2,11 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { showEmployee } from "../../actions/EmployeesAction";
 import { BannerEmployee } from "../../components/employee/BannerEmployee";
-import { EmployeeLoading } from "../../components/employee/EmployeeLoading";
 import { NotFoundTemplate } from "../../components/layout/NotFoundTemplate";
 import { AppTitle } from "../../components/partials/AppTitle";
 import { EmployeeKey } from "../../ultils/keys";
 import { BasicInformation } from "./../../components/employee/BasicInformation";
+import { DataLoading } from "../../components/layout/DataLoading";
 
 export const EmployeeProfile = () => {
   const { employee } = useParams();
@@ -27,7 +27,7 @@ export const EmployeeProfile = () => {
           <div className='card'>
             <div className='card-body'>
               {isLoading ? (
-                <EmployeeLoading />
+                <DataLoading />
               ) : isError ? (
                 <NotFoundTemplate message={err.response.data.message} />
               ) : (

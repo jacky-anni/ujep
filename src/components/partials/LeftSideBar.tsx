@@ -86,6 +86,16 @@ const LeftSideBar = ({ user }: any) => {
                       <span className='bold'> Les cours </span>
                     </Link>
                   </li>
+
+                  <li>
+                    <Link to='/dashbord/catalogs'>
+                      <MenuAvatar img={"catalogue"} />
+                      {/* <span className='badge bg-info rounded-pill float-end'>
+                    4
+                  </span> */}
+                      <span className='bold'> Catalogues </span>
+                    </Link>
+                  </li>
                 </>
               )}
             </ul>

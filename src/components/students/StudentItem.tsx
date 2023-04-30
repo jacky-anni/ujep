@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import DeleteStudent from "./DeleteStudent";
 
 const StudentItem = ({ students }: any) => {
   return (

@@ -13,7 +13,6 @@ export const EditFacultyForm = ({ faculty }: any) => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(ShemaFaculty),
@@ -51,7 +50,6 @@ export const EditFacultyForm = ({ faculty }: any) => {
         Toast("success", "Faculté enregistré avec succès");
         queryClient.invalidateQueries([FacultyKey]);
         navigate(`/dashbord/faculty/${faculty.id}`);
-        // reset();
       },
     }
   );

@@ -4,8 +4,8 @@ import { UserKey } from "../../ultils/keys";
 import { getUsers } from "../../actions/UserAction";
 import { Header } from "./Header";
 import { UserListItem } from "./UserListItem";
-import { UsersLoading } from "./UsersLoading";
 import { UserPagination } from "./UserPagination";
+import { DataLoading } from "../layout/DataLoading";
 
 export const UserList = () => {
   const { data: users, isLoading } = useQuery([UserKey], () => getUsers());
@@ -35,11 +35,7 @@ export const UserList = () => {
           </tbody>
         </table>
 
-        {isLoading && (
-          <>
-            <UsersLoading />
-          </>
-        )}
+        {isLoading && <DataLoading />}
         {/* if the employees is empty */}
         {users && users.data.length === 0 && (
           <p className='mt-3 mb-0'>

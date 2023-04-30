@@ -3,7 +3,7 @@ import { AppTitle } from "../../components/partials/AppTitle";
 export const Students = () => {
   return (
     <>
-      <AppTitle title={"Ajouter etudiant"} img='students' />
+      <AppTitle title={"Liste des étudiants"} img='employees' />
       <StudentsList />
     </>
   );

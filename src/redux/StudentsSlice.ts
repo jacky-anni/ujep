@@ -8,6 +8,8 @@ interface StudentState {
   student: any;
   errors: any;
   total: number;
+  filtered: any;
+  activeFaculty: any;
 }
 
 // Define the initial state using that type
@@ -19,6 +21,8 @@ const initialState: StudentState = {
   student: null,
   errors: null,
   total: 0,
+  filtered: null,
+  activeFaculty: { active: true, faculty: null },
 };
 
 export const StudentSlice = createSlice({
@@ -31,40 +35,31 @@ export const StudentSlice = createSlice({
       state.students = [...action.payload.data];
       state.meta = action.payload.meta;
     },
-    studentsFetch: (state, action) => {
+
+    searchStudents: (state, action) => {
       state.isLoading = false;
-      state.students = action.payload.data;
-      state.meta = action.payload.meta;
-      state.total = action.payload.meta.total;
-    },
-    studentFetch: (state, action) => {
-      state.isLoading = false;
-      state.student = action.payload;
+      state.filtered = action.payload;
     },
 
-    studentDelete: (state, action) => {
+    clearSearchStudents: (state) => {
       state.isLoading = false;
-      state.students = state.students.filter(
-        (student: any) => student.personId !== action.payload.person.id
-      );
-      state.total = state.total - 1;
+      state.filtered = null;
     },
-    studentsFetchErrors: (state, action) => {
+
+    activeFacultyRegistration: (state, action) => {
       state.isLoading = false;
-      state.errors = action.payload;
-    },
-    clearLoading: (state) => {
-      state.isLoading = true;
+      state.activeFaculty = {
+        active: action.payload.active,
+        faculty: action.payload.faculty,
+      };
     },
   },
 });
 
 export const {
   setPagination,
-  studentsFetch,
-  studentsFetchErrors,
-  clearLoading,
-  studentFetch,
-  studentDelete,
+  searchStudents,
+  clearSearchStudents,
+  activeFacultyRegistration,
 } = StudentSlice.actions;
 export default StudentSlice.reducer;

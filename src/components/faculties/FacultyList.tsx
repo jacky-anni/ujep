@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { GetFaculties } from "../../actions/FacultyActions";
-import { FacultyLoading } from "./Ui/FacultyLoading";
 import { FacultyButtomAction } from "./Ui/FacultyButtomAction";
 import { FacultyListItem } from "./FacultyListItem";
 import { FacultySearBar } from "./Ui/FacultySearchBar";
 import { Divider, Empty } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import { FacultyKey } from "./../../ultils/keys";
+import { DataLoading } from "../layout/DataLoading";
 
 export const FacultyList = () => {
   // select faculties
@@ -42,7 +42,7 @@ export const FacultyList = () => {
       )}
       <div className='row m-1'>
         {isLoading ? (
-          <FacultyLoading />
+          <DataLoading />
         ) : (
           <>
             {data &&

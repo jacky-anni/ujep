@@ -34,6 +34,11 @@ export const GetStudents = (page: number = 1) => {
   return axios.get(`/students?page=${page}`).then((res) => res.data);
 };
 
+// get students all
+export const GetStudentsAll = () => {
+  return axios.get(`/students/filter/all`).then((res) => res.data);
+};
+
 // add Students
 export const AddStudents = (data: any) => {
   return axios.post(`/students`, data).then((res) => res.data);

@@ -3,10 +3,10 @@ import { ShowStudents } from "../../actions/StudentAction";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { UserKey } from "../../ultils/keys";
-import { StudentsLoading } from "../../components/students/StudentsLoading";
 import { NotFoundTemplate } from "../../components/layout/NotFoundTemplate";
 import { AddStudentsInfoForm } from "../../components/students/AddStudentsInfoForm";
 import { Divider } from "antd";
+import { DataLoading } from "../../components/layout/DataLoading";
 
 export const AddStudentsInfoSupp = () => {
   const { student } = useParams();
@@ -35,7 +35,7 @@ export const AddStudentsInfoSupp = () => {
           </h4>
           <Divider />
           {isLoading ? (
-            <StudentsLoading />
+            <DataLoading />
           ) : isError ? (
             <NotFoundTemplate message={err.response.data.message} />
           ) : (

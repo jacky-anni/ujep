@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { GetFaculty } from "../../actions/FacultyActions";
-import { FacultyLoading } from "../../components/faculties/Ui/FacultyLoading";
 import { AppTitle } from "../../components/partials/AppTitle";
 import { FacultyKey } from "../../ultils/keys";
 import { ShowFaculty } from "../../components/faculties/ShowFaculty";
 
 import { useParams } from "react-router-dom";
 import { NotFoundTemplate } from "../../components/layout/NotFoundTemplate";
+import { DataLoading } from "../../components/layout/DataLoading";
 
 export const ShowFaculties = () => {
   // facuty params
@@ -28,7 +28,7 @@ export const ShowFaculties = () => {
         <div className='row p-1'>
           <div className='col-md-12'>
             {isLoading ? (
-              <FacultyLoading />
+              <DataLoading />
             ) : isError ? (
               <NotFoundTemplate message={err.response.data.message} />
             ) : (

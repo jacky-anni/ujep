@@ -179,12 +179,12 @@ const TopBar = ({ user }: any) => {
               <div className='dropdown-menu dropdown-menu-end profile-dropdown'>
                 {/* item*/}
                 <div className='dropdown-header noti-title'>
-                  <h6 className='text-overflow m-0'>Welcome !</h6>
+                  <h6 className='text-overflow m-0'>Bienvenue !</h6>
                 </div>
                 {/* item*/}
                 <span className='dropdown-item notify-item'>
                   <i className='fa fa-user' />
-                  <span>My Account</span>
+                  <span>Mon compte</span>
                 </span>
                 <div className='dropdown-divider' />
                 {/* item*/}
@@ -193,8 +193,8 @@ const TopBar = ({ user }: any) => {
                   style={{ cursor: "pointer" }}
                   onClick={onClick}
                 >
-                  <i className='fa fa-signout' />
-                  <span>Logout</span>
+                  <i className='fa fa-signup' />
+                  <span>Déconnexion</span>
                 </span>
               </div>
             </li>

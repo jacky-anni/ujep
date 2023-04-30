@@ -1,13 +1,11 @@
+import { RegistrationForm } from "./regislation/RegistrationForm";
 import { ButtonProfile } from "./Ui/ButtonProfile";
 
 export const OptionsNavStudent = () => {
   return (
     <>
-      <ButtonProfile
-        title='Immatriculation'
-        subtitle="Toutes les infos sur l'imm."
-        img={"immatriculation"}
-      />
+      <RegistrationForm />
+
       <ButtonProfile
         bg={"danger"}
         title='Réinscription'

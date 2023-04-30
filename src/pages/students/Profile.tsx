@@ -7,16 +7,22 @@ import { Skeleton } from "antd";
 import PersonalInformationSupp from "../../components/students/PersonalInformationSupp";
 import { useQuery } from "@tanstack/react-query";
 import { StudentKey } from "../../ultils/keys";
-import { StudentsLoading } from "./../../components/students/StudentsLoading";
 import { MenuAvatar } from "../../components/Ui/MenuAvatar";
 import { NotFoundTemplate } from "./../../components/layout/NotFoundTemplate";
+import { DataLoading } from "../../components/layout/DataLoading";
+import { RegislationList } from "../../components/students/regislation/RegislationList";
 export const Profile = () => {
   const { student } = useParams();
 
-  const { data, isLoading, error, isError } = useQuery(
+  const { data, isLoading, isError } = useQuery(
     [StudentKey, student],
-    () => ShowStudents(student)
+    () => ShowStudents(student),
+    {
+      cacheTime: 0,
+    }
   );
+
+  console.log(data);
 
   return (
     <>
@@ -29,11 +35,13 @@ export const Profile = () => {
             {isLoading ? (
               <>
                 <div className='card-body bg-light'>
-                  <StudentsLoading />
+                  <DataLoading />
                 </div>
               </>
             ) : (
-              <BannerStudents student={data} />
+              <>
+                <BannerStudents student={data} />
+              </>
             )}
           </div>
 
@@ -82,6 +90,7 @@ export const Profile = () => {
                 </div>
               </div>
             </div>{" "}
+            {isLoading ? <DataLoading /> : <RegislationList student={data} />}
           </div>
         </div>
       )}
