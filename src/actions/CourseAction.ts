@@ -4,6 +4,11 @@ export const ListCourse = (page: number = 1) => {
   return axios.get(`/course?page=${page}`).then((res) => res.data);
 };
 
+// withou pagination
+export const ListCourseWithoutPagination = () => {
+  return axios.get(`/course/filter/all`).then((res) => res.data);
+};
+
 // create course
 export const AddCourse = (data: any) => {
   return axios.post(`/course`, data).then((res) => res.data);

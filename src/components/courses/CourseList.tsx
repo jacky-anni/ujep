@@ -2,11 +2,11 @@ import React from "react";
 import { CreateCourse } from "./CreateCourse";
 import { useQuery } from "@tanstack/react-query";
 import { CourseKey } from "../../ultils/keys";
-import { CourseLoading } from "./CourseLoading";
 import { ListCourse } from "../../actions/CourseAction";
-import { Divider, List } from "antd";
+import { List } from "antd";
 import { CoursePagination } from "./CoursePagination";
 import { CourseItem } from "./CourseItem";
+import { DataLoading } from "../layout/DataLoading";
 
 export const CourseList = () => {
   const { data, isLoading } = useQuery([CourseKey], () => ListCourse());
@@ -24,7 +24,7 @@ export const CourseList = () => {
         {/* <List_ /> */}
         <div className='row m-1'>
           {isLoading ? (
-            <CourseLoading />
+            <DataLoading />
           ) : (
             <>
               <List

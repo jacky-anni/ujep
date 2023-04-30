@@ -4,20 +4,18 @@ import EmployeeSearchBar from "./EmployeeSearchBar";
 import EmployeeItem from "./EmployeeItem";
 import { GetEmployees } from "../../actions/EmployeesAction";
 import { Link } from "react-router-dom";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { EmployeeKey } from "../../ultils/keys";
-import { EmployeeLoading } from "./EmployeeLoading";
 import { useLocation } from "react-router-dom";
 import queryString from "query-string";
+import { DataLoading } from "../layout/DataLoading";
 
 const EmployeeList: React.FC = (props) => {
   const location = useLocation();
   const { page }: any = queryString.parse(location.search);
-  // initialize query client
-  const queryClient = useQueryClient();
 
   // const page = parseInt(query.page);
-  const { data, isLoading, isError, refetch } = useQuery([EmployeeKey], () =>
+  const { data, isLoading, isError } = useQuery([EmployeeKey], () =>
     GetEmployees(page)
   );
 
@@ -80,7 +78,7 @@ const EmployeeList: React.FC = (props) => {
                 {/* loading state */}
                 {isLoading && (
                   <>
-                    <EmployeeLoading />
+                    <DataLoading />
                   </>
                 )}
 

@@ -13,7 +13,7 @@ export const FacultyButtomAction = ({ faculty }: any) => {
           <i className='fa fa-grip-vertical m-0 text-muted h3' />
         </span>
         <div className='dropdown-menu dropdown-menu-end'>
-          <Link to={`/dashbord/faculty/${faculty.id}`}>
+          <Link to={`/dashbord/faculty/edit/${faculty.id}`}>
             <span
               className='dropdown-item'
               style={{ cursor: "pointer", fontWeight: "bold" }}

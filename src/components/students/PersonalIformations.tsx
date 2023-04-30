@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import moment from "moment";
+import "moment/locale/fr";
 
 const PersonalIformations = ({ student }: any) => {
   return (
@@ -23,7 +25,10 @@ const PersonalIformations = ({ student }: any) => {
 
             <tr>
               <th className='table-light table-info'>date de naissance</th>
-              <th scope='row'>{student.person.date_naissance}</th>
+              <th scope='row'>
+                {" "}
+                {moment(student.date_naissance).format("DD MMMM YYYY")}
+              </th>
             </tr>
 
             <tr>

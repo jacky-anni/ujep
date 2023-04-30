@@ -147,3 +147,33 @@ export const Teachers = React.lazy(() =>
     default: Teachers,
   }))
 );
+
+// create teachers
+export const ShowTeacher = React.lazy(() =>
+  import("../pages/teachers/ShowTeacher").then(({ ShowTeacher }) => ({
+    default: ShowTeacher,
+  }))
+);
+
+// edit teachers
+export const EditTeacher = React.lazy(() =>
+  import("../pages/teachers/EditTeacher").then(({ EditTeacher }) => ({
+    default: EditTeacher,
+  }))
+);
+//===========================================================================================
+// catalogs
+export const Catalogs = React.lazy(() =>
+  import("../pages/catalogs/Catalogs").then(({ Catalogs }) => ({
+    default: Catalogs,
+  }))
+);
+
+// catalog cours by caulty
+export const CatalogsCourseByFac = React.lazy(() =>
+  import("../pages/catalogs/CatalogsCourseByFac").then(
+    ({ CatalogsCourseByFac }) => ({
+      default: CatalogsCourseByFac,
+    })
+  )
+);

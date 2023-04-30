@@ -10,12 +10,12 @@ import NetWorkConnection from "./NetWorkConnection";
 import { Preloader } from "./Preloader";
 import { ErrorBoundary } from "react-error-boundary";
 import { errorBoundary } from "../../ultils/errorBoundary";
+import { Suspense } from "react";
+import { Loader } from "./Loader";
 const Main = () => {
   const navigate = useNavigate();
 
-  const { data, isLoading, isError, error } = useQuery([UserKey, 1], () =>
-    getUser()
-  );
+  const { data, isLoading, error } = useQuery([UserKey, 1], () => getUser());
   const err: any = error;
 
   return (
@@ -26,7 +26,7 @@ const Main = () => {
         <>
           {err && err.response?.status === 401 ? (
             navigate("/")
-          ) : err && err.message == "Network Error" ? (
+          ) : err && err.message === "Network Error" ? (
             <NetWorkConnection />
           ) : (
             <div>
@@ -43,7 +43,7 @@ const Main = () => {
                   pauseOnFocusLoss
                   draggable
                   pauseOnHover
-                  theme='light'
+                  theme='dark'
                 />
                 <div className='content-page'>
                   <div className='content'>
@@ -59,8 +59,10 @@ const Main = () => {
                                 // Reset the state of your app so the error doesn't happen again
                               }}
                             >
-                              <Outlet />
-                              <Footer />
+                              <Suspense fallback={<Loader />}>
+                                <Outlet />
+                                <Footer />
+                              </Suspense>
                             </ErrorBoundary>
                             {/* {children} */}
                           </div>

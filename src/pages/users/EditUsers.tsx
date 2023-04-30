@@ -4,10 +4,9 @@ import { useParams } from "react-router-dom";
 import { showUser } from "../../actions/UserAction";
 import { NotFoundTemplate } from "../../components/layout/NotFoundTemplate";
 import { AppTitle } from "../../components/partials/AppTitle";
-import { CreateUsersForm } from "../../components/users/AddUsersForm";
 import { EditUsersForm } from "../../components/users/EditUsersForm";
-import { UsersLoading } from "../../components/users/UsersLoading";
 import { UserKey } from "../../ultils/keys";
+import { DataLoading } from "../../components/layout/DataLoading";
 
 export const EditUsers = () => {
   const { user }: any = useParams();
@@ -27,7 +26,7 @@ export const EditUsers = () => {
       <div className='bg-white'>
         <div className='col-md-12 p-2'>
           {isLoading ? (
-            <UsersLoading />
+            <DataLoading />
           ) : isError ? (
             <NotFoundTemplate message={err.response.data.message} />
           ) : (

@@ -11,13 +11,11 @@ export const FacultyListItem = ({ faculty }: any) => {
       <p className='text-muted text-uppercase'>
         <i className='fa fa-account-circle' /> <small>{faculty.degree}</small>
       </p>
-      <div className='badge bg-soft-success text-success mb-3'>Finished</div>
-      {/* Desc*/}
       <p
         className='text-muted font-13 mb-3 sp-line-2'
         style={{ height: "20px" }}
       >
-        {faculty.description}
+        {faculty.description}...
       </p>
 
       {/* <p className='mb-1'>

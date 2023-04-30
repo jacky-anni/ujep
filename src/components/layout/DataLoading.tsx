@@ -1,12 +1,12 @@
-import { Audio } from "react-loader-spinner";
-export const CourseLoading = () => {
+import { Oval } from "react-loader-spinner";
+export const DataLoading = () => {
   return (
     <>
       <center>
-        <p style={{ padding: "10px" }}>
-          <Audio
-            height='90'
-            width='90'
+        <p style={{ padding: "10px", backgroundColor: "white" }}>
+          <Oval
+            height='30'
+            width='30'
             color='#7d56c2'
             ariaLabel='audio-loading'
             wrapperClass='wrapper-class'

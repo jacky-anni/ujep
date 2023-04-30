@@ -26,173 +26,86 @@ import {
   Login,
   Courses,
   Teachers,
+  ShowCourse,
+  ShowTeacher,
+  EditTeacher,
+  Catalogs,
+  CatalogsCourseByFac,
 } from "./ultils/routes";
 import { Preloader } from "./components/layout/Preloader";
+import { CreateTeacher } from "./pages/teachers/CreateTeacher";
 
 const App: React.FC = () => {
   return (
     <>
       <Routes>
         <Route path='/dashbord' element={<Main />}>
-          <Route
-            path=''
-            element={
-              <Suspense fallback={<Loader />}>
-                <Home />
-              </Suspense>
-            }
-          />
-
-          <Route
-            path='/dashbord/employees'
-            element={
-              <Suspense fallback={<Loader />}>
-                <Employees />
-              </Suspense>
-            }
-          />
-          <Route
-            path='/dashbord/students'
-            element={
-              <Suspense fallback={<Loader />}>
-                <Students />
-              </Suspense>
-            }
-          />
-          <Route
-            path='/dashbord/faculties'
-            element={
-              <Suspense fallback={<Loader />}>
-                <Faculties />
-              </Suspense>
-            }
-          />
+          <Route path='' element={<Home />} />
+          <Route path='/dashbord/employees' element={<Employees />} />
+          <Route path='/dashbord/students' element={<Students />} />
+          <Route path='/dashbord/faculties' element={<Faculties />} />
           <Route
             path='/dashbord/faculty/:idFaculty'
-            element={
-              <Suspense fallback={<Loader />}>
-                <ShowFaculties />
-              </Suspense>
-            }
+            element={<ShowFaculties />}
           />
-          <Route
-            path='/dashbord/faculty/create'
-            element={
-              <Suspense fallback={<Loader />}>
-                <CreateFaculty />
-              </Suspense>
-            }
-          />
+          <Route path='/dashbord/faculty/create' element={<CreateFaculty />} />
           <Route
             path='/dashbord/faculty/edit/:idFaculty'
-            element={
-              <Suspense fallback={<Loader />}>
-                <EditFaculty />
-              </Suspense>
-            }
+            element={<EditFaculty />}
           />
-          <Route
-            path='/dashbord/users'
-            element={
-              <Suspense fallback={<Loader />}>
-                <Users />
-              </Suspense>
-            }
-          />
-          <Route
-            path='/dashbord/add-users'
-            element={
-              <Suspense fallback={<Loader />}>
-                <CreateUsers />
-              </Suspense>
-            }
-          />
-          <Route
-            path='/dashbord/edit-users/:user'
-            element={
-              <Suspense fallback={<Loader />}>
-                <EditUsers />
-              </Suspense>
-            }
-          />
-          <Route
-            path='/dashbord/add-students'
-            element={
-              <Suspense fallback={<Loader />}>
-                <CreateStudents />
-              </Suspense>
-            }
-          />
+          <Route path='/dashbord/users' element={<Users />} />
+          <Route path='/dashbord/add-users' element={<CreateUsers />} />
+          <Route path='/dashbord/edit-users/:user' element={<EditUsers />} />
+          <Route path='/dashbord/add-students' element={<CreateStudents />} />
 
           <Route
             path='/dashbord/add-students-infos/:student'
-            element={
-              <Suspense fallback={<Loader />}>
-                <AddStudentsInfoSupp />
-              </Suspense>
-            }
+            element={<AddStudentsInfoSupp />}
           />
           <Route
             path='/dashbord/profile-students/:student'
-            element={
-              <Suspense fallback={<Loader />}>
-                <Profile />
-              </Suspense>
-            }
+            element={<Profile />}
           />
           <Route
             path='/dashbord/edit-students/:student'
-            element={
-              <Suspense fallback={<Loader />}>
-                <EditStudents />
-              </Suspense>
-            }
+            element={<EditStudents />}
           />
-          <Route
-            path='/dashbord/add-employee'
-            element={
-              <Suspense fallback={<Loader />}>
-                <CreateEmpoyee />
-              </Suspense>
-            }
-          />
+          <Route path='/dashbord/add-employee' element={<CreateEmpoyee />} />
           <Route
             path='/dashbord/employee/profile/:employee'
-            element={
-              <Suspense fallback={<Loader />}>
-                <EmployeeProfile />
-              </Suspense>
-            }
+            element={<EmployeeProfile />}
+          />
+
+          <Route path='/dashbord/edit-employee/:id' element={<EditEmpoyee />} />
+
+          <Route path='/dashbord/courses' element={<Courses />} />
+
+          <Route path='/dashbord/course/:idCourse' element={<ShowCourse />} />
+
+          <Route path='/dashbord/teachers' element={<Teachers />} />
+
+          <Route path='/dashbord/teacher/create' element={<CreateTeacher />} />
+
+          <Route
+            path='/dashbord/teacher/profile/:idTeacher'
+            element={<ShowTeacher />}
           />
 
           <Route
-            path='/dashbord/edit-employee/:id'
-            element={
-              <Suspense fallback={<Loader />}>
-                <EditEmpoyee />
-              </Suspense>
-            }
+            path='/dashbord/teacher/edit/:idTeacher'
+            element={<EditTeacher />}
           />
 
-          <Route
-            path='/dashbord/courses'
-            element={
-              <Suspense fallback={<Loader />}>
-                <Courses />
-              </Suspense>
-            }
-          />
+          <Route path='/dashbord/catalogs' element={<Catalogs />} />
 
           <Route
-            path='/dashbord/teachers'
-            element={
-              <Suspense fallback={<Loader />}>
-                <Teachers />
-              </Suspense>
-            }
+            path='/dashbord/catalogs/faculty/:idFaculty'
+            element={<CatalogsCourseByFac />}
           />
         </Route>
+      </Routes>
 
+      <Routes>
         <Route path='/' element={<LoginLayout />}>
           <Route
             path=''

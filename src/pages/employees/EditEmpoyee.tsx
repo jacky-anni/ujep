@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { EmployeeKey } from "../../ultils/keys";
 import { NotFoundTemplate } from "../../components/layout/NotFoundTemplate";
-import { EmployeeLoading } from "../../components/employee/EmployeeLoading";
+import { DataLoading } from "../../components/layout/DataLoading";
 
 export const EditEmpoyee: React.FC<{}> = () => {
   const { id } = useParams();
@@ -26,7 +26,7 @@ export const EditEmpoyee: React.FC<{}> = () => {
           <div className='card'>
             <div className='card-body'>
               {isLoading ? (
-                <EmployeeLoading />
+                <DataLoading />
               ) : isError ? (
                 <NotFoundTemplate message={err.response.data.message} />
               ) : (
